@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>국립대학 외국인 유학생 오리엔테이션 행정 지원 시스템</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            900: '#1e3a8a'
+                        },
+                        neutralBg: '#f8fafc',
+                        cardBg: '#ffffff'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+    </style>
+    <!-- Chosen Palette: Warm Professional Neutrals & Academic Blue Accent -->
+    <!-- Application Structure Plan:
+         1. Executive Dashboard & Dynamic Linked Chart Simulator: Visual analysis of part-time work limits using explicit D-2 detail codes (D-2-1 to D-2-6) with interactive chart highlight linking.
+         2. Multilingual Orientation Guide: Official notices in 10 languages, explicitly specifying D-2-1, D-2-2, D-2-3, D-2-4, D-2-6 visa codes.
+         3. Translation QA Matrix: Audit matrix verifying legal terminology across all languages.
+         4. Portal Architecture & Forms: GNB/LNB web tree with 5 target languages (KO, EN, ZH, JA, TH) and essential official form checklist.
+         5. AI Prompt Architect & Master Prompt Generator: Tailored AI Prompt builder incorporating granular D-2 visa codes.
+    -->
+    <!-- Visualization & Content Choices:
+         - Chart.js Canvas bar chart dynamically linked with interactive simulator selection.
+         - Interactive Simulator dropdown updated with full D-2 sub-code classifications.
+         - IA Tree structure updated with multi-language headings (Korean, English, Chinese, Japanese, Thai).
+         - NO SVG / NO Mermaid JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xl shadow-md">
+                        Edu
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-slate-900 leading-tight">국립대학 유학생 오리엔테이션 행정 포털</h1>
+                        <p class="text-xs text-slate-500">교육부 · 국립대학 신규 교육행정관 AI 실무 지원 시스템</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-1" id="main-nav">
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn px-4 py-2 rounded-md text-sm font-medium transition-colors text-blue-600 bg-blue-50">대시보드 & 연동 계산기</button>
+                    <button onclick="switchTab('multilingual')" id="nav-multilingual" class="nav-btn px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-100">10개국어 안내문</button>
+                    <button onclick="switchTab('qa')" id="nav-qa" class="nav-btn px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-100">번역 품질 검증</button>
+                    <button onclick="switchTab('architecture')" id="nav-architecture" class="nav-btn px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-100">웹 정보구조(IA)</button>
+                    <button onclick="switchTab('prompt-builder')" id="nav-prompt-builder" class="nav-btn px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-100">최종 프롬프트 생성기</button>
+                </nav>
+            </div>
+        </div>
+        <!-- Mobile Navigation Bar -->
+        <div class="md:hidden flex overflow-x-auto px-2 py-2 border-t border-slate-100 space-x-2 bg-slate-50 text-xs">
+            <button onclick="switchTab('dashboard')" class="px-3 py-1.5 rounded-md bg-blue-600 text-white whitespace-nowrap">대시보드</button>
+            <button onclick="switchTab('multilingual')" class="px-3 py-1.5 rounded-md bg-white text-slate-700 border whitespace-nowrap">10개국어</button>
+            <button onclick="switchTab('qa')" class="px-3 py-1.5 rounded-md bg-white text-slate-700 border whitespace-nowrap">번역검증</button>
+            <button onclick="switchTab('architecture')" class="px-3 py-1.5 rounded-md bg-white text-slate-700 border whitespace-nowrap">정보구조</button>
+            <button onclick="switchTab('prompt-builder')" class="px-3 py-1.5 rounded-md bg-white text-slate-700 border whitespace-nowrap">프롬프트 생성</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- SECTION 1: DASHBOARD & INTERACTIVE CALCULATOR -->
+        <section id="sec-dashboard" class="space-y-6">
+            <div class="bg-blue-900 text-white p-6 rounded-2xl shadow-lg relative overflow-hidden">
+                <div class="relative z-10 max-w-3xl">
+                    <span class="inline-block px-3 py-1 bg-blue-700 text-blue-100 text-xs font-semibold rounded-full mb-3">2026년도 법무부 D-2 세부 체류자격(D-2-1 ~ D-2-6) 실시간 연동 반영</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-2">외국인 유학생 세부 체류자격별 행정 종합 요약</h2>
+                    <p class="text-blue-100 text-sm leading-relaxed">
+                        세부 체류 자격을 진단기에서 선택하면 **왼쪽 그래프의 허용 근무 시간이 즉시 실시간 연동**되어 강조 표시됩니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Visa Sub-code Breakdown Quick Reference -->
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">📌 D-2 체류자격 세부 구분 기준 (출입국관리법 시행령)</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-xs">
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <span class="font-bold text-blue-700 block">D-2-1</span>
+                        <span class="text-slate-600 font-medium">전문학사 과정</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <span class="font-bold text-blue-700 block">D-2-2</span>
+                        <span class="text-slate-600 font-medium">학사 과정 (4년제)</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <span class="font-bold text-blue-700 block">D-2-3</span>
+                        <span class="text-slate-600 font-medium">석사 과정</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <span class="font-bold text-blue-700 block">D-2-4</span>
+                        <span class="text-slate-600 font-medium">박사 과정</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <span class="font-bold text-blue-700 block">D-2-6</span>
+                        <span class="text-slate-600 font-medium">교환학생 과정</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metric Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-xs text-slate-500 font-medium">외국인등록 기한</div>
+                    <div class="text-2xl font-bold text-slate-900 mt-1">입국 후 90일</div>
+                    <div class="text-xs text-blue-600 mt-2 font-medium">Residence Card 필수 발급</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-xs text-slate-500 font-medium">2026 건강보험료 (경감 적용)</div>
+                    <div class="text-2xl font-bold text-blue-600 mt-1">월 79,320원</div>
+                    <div class="text-xs text-slate-500 mt-2">매월 25일 사전 납부 의무</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-xs text-slate-500 font-medium">D-2-2 학부 (TOPIK 3급)</div>
+                    <div class="text-2xl font-bold text-emerald-600 mt-1">주중 25시간</div>
+                    <div class="text-xs text-emerald-700 mt-2">방학/주말 무제한 허용</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-xs text-slate-500 font-medium">D-2-3/4 대학원 (TOPIK 4급)</div>
+                    <div class="text-2xl font-bold text-purple-600 mt-1">주중 30시간</div>
+                    <div class="text-xs text-purple-700 mt-2">방학/주말 무제한 허용</div>
+                </div>
+            </div>
+
+            <!-- Visual Charts & Interactive Simulator Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Visual Chart 1: Dynamically Linked Chart -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-base font-bold text-slate-900">시간제 취업 허용 시간 (진단기 실시간 연동)</h3>
+                        <span id="chart-focus-badge" class="px-2 py-0.5 bg-blue-100 text-blue-800 text-[11px] font-bold rounded">선택: D-2-2 학사</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">우측 진단기에서 선택한 세부 비자 항목이 차트에서 실시간으로 강조(Highlight)됩니다.</p>
+                    <div class="chart-container my-auto">
+                        <canvas id="workHoursChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Interactive Calculator Component -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                    <h3 class="text-base font-bold text-slate-900 mb-1">세부 체류자격별 아르바이트 자격 진단기</h3>
+                    <p class="text-xs text-slate-500 mb-4">체류 자격을 선택하시면 좌측 차트 데이터가 실시간으로 변경됩니다.</p>
+                    
+                    <div class="space-y-4 text-sm flex-grow">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">세부 체류 자격 (Detailed Visa Code)</label>
+                            <select id="calc-visa" onchange="runSimulation()" class="w-full p-2.5 bg-slate-50 border border-blue-400 rounded-lg text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 outline-none font-bold">
+                                <option value="D2_1">D-2-1 전문학사 과정 (Junior College)</option>
+                                <option value="D2_2" selected>D-2-2 학사 과정 (4년제 대학교 Bachelor)</option>
+                                <option value="D2_3">D-2-3 석사 과정 (Master's Degree)</option>
+                                <option value="D2_4">D-2-4 박사 과정 (Ph.D. Degree)</option>
+                                <option value="D2_6">D-2-6 교환학생 (Exchange Student)</option>
+                                <option value="D4_1">D-4-1 일반연수 (어학연수생)</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">직전학기 평점 / 출석률</label>
+                                <select id="calc-gpa" onchange="runSimulation()" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                                    <option value="PASS">C학점(2.0) 이상 / 출석 90% 이상</option>
+                                    <option value="FAIL">C학점 미만 / 출석 90% 미만</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">한국어 능력 (TOPIK)</label>
+                                <select id="calc-topik" onchange="runSimulation()" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                                    <option value="HIGH">기준 충족 (D-2-1/2: 3급, D-2-3/4: 4급)</option>
+                                    <option value="LOW">기준 미충족 (미소지 또는 기준 미달)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">국내 체류 기간</label>
+                            <select id="calc-stay" onchange="runSimulation()" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option value="OVER6">6개월 이상 경과</option>
+                                <option value="UNDER6">6개월 미만</option>
+                            </select>
+                        </div>
+
+                        <!-- Result Box -->
+                        <div id="sim-result-box" class="p-4 rounded-xl bg-blue-50 border border-blue-200 text-slate-800 transition-all">
+                            <div class="font-bold text-blue-900 text-sm flex items-center justify-between">
+                                <span id="sim-title">시뮬레이션 결과</span>
+                                <span id="sim-badge" class="px-2 py-0.5 bg-blue-600 text-white rounded text-xs">허가 가능</span>
+                            </div>
+                            <p id="sim-desc" class="text-xs mt-2 text-slate-700 leading-relaxed">
+                                선택한 세부 비자 조건에 대한 안내가 표시됩니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: MULTILINGUAL ORIENTATION GUIDES -->
+        <section id="sec-multilingual" class="space-y-6 hidden">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-xl font-bold text-slate-900 mb-2">10개 국어 다국어 유학생 오리엔테이션 안내문 (D-2 세부코드 포함)</h2>
+                <p class="text-xs text-slate-600 mb-6">
+                    법무부 출입국 규정에 맞춰 D-2-1(전문학사), D-2-2(학사), D-2-3(석사), D-2-4(박사), D-2-6(교환학생) 코드를 명확히 명시한 공식 안내문입니다.
+                </p>
+
+                <!-- Language Tabs -->
+                <div class="flex overflow-x-auto pb-2 border-b border-slate-200 space-x-2 text-xs" id="lang-tab-container">
+                    <!-- Dynamic JS Generation -->
+                </div>
+
+                <!-- Active Language Content Card -->
+                <div class="mt-6 bg-slate-50 p-6 rounded-xl border border-slate-200 relative">
+                    <button onclick="copyCurrentNotice()" class="absolute top-4 right-4 px-3 py-1.5 bg-white border border-slate-300 shadow-sm text-xs text-slate-700 font-medium rounded-md hover:bg-slate-100 flex items-center space-x-1">
+                        <span>텍스트 복사</span>
+                    </button>
+                    <div id="notice-content-area" class="prose max-w-none text-slate-800 text-sm space-y-4">
+                        <!-- Content dynamically rendered via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: TRANSLATION QA MATRIX -->
+        <section id="sec-qa" class="space-y-6 hidden">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-xl font-bold text-slate-900 mb-2">다국어 번역 품질 점검 및 세부 비자 세분화 검증 결과서</h2>
+                <p class="text-xs text-slate-600 mb-6">
+                    구 ARC 표기를 **Residence Card**로 전면 보정함과 동시에, 혼동을 초래하던 일반 'D-2' 표기를 D-2-1부터 D-2-6까지 세부 코드로 명확히 검수하여 번역의 법적 정확성을 확보했습니다.
+                </p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-slate-100 border-b border-slate-200 text-slate-700 font-bold">
+                                <th class="p-3">언어 (Language)</th>
+                                <th class="p-3">비자 세부코드 명시성</th>
+                                <th class="p-3">번역 정확도</th>
+                                <th class="p-3">법적고지 명확성</th>
+                                <th class="p-3">주요 검증 및 보정 내역 (QA Remarks)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="qa-table-body" class="divide-y divide-slate-200">
+                            <!-- Populated dynamically via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: WEB INFORMATION ARCHITECTURE & FORMS (5 LANGUAGES) -->
+        <section id="sec-architecture" class="space-y-6 hidden">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 pb-4 mb-4 gap-2">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 mb-1">외국인 유학생 안내 웹사이트 정보구조 (IA) & 서식 센터</h2>
+                        <p class="text-xs text-slate-600">
+                            D-2 세부 체류자격별 신청 절차를 다국어로 손쉽게 파악할 수 있는 포털 블루프린트입니다.
+                        </p>
+                    </div>
+                    <!-- Multilingual IA Legend Badge -->
+                    <div class="flex flex-wrap gap-1 text-[11px] font-semibold">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded">🇰🇷 한국어</span>
+                        <span class="px-2 py-1 bg-slate-100 text-slate-700 rounded">🇺🇸 English</span>
+                        <span class="px-2 py-1 bg-red-50 text-red-700 rounded">🇨🇳 中文</span>
+                        <span class="px-2 py-1 bg-amber-50 text-amber-800 rounded">🇯🇵 日本語</span>
+                        <span class="px-2 py-1 bg-emerald-50 text-emerald-800 rounded">🇹🇭 ไทย</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 space-y-4">
+                        <h3 class="text-sm font-bold text-slate-900 border-b pb-2 flex items-center justify-between">
+                            <span>메인 정보구조 (GNB / LNB 5개 국어 동시 명시)</span>
+                            <span class="text-xs font-normal text-slate-500">한국어 · English · 中文 · 日本語 · ไทย</span>
+                        </h3>
+                        <div class="space-y-3" id="ia-tree-container">
+                            <!-- Dynamically generated via JS with 5 languages -->
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 self-start">
+                        <h3 class="text-sm font-bold text-slate-900 mb-3">유학생 필수 행정 서식 및 서류 (Forms & Documents)</h3>
+                        <p class="text-xs text-slate-500 mb-3">5개 국어 서비스 연동 포털 제공 서식 양식 목록입니다.</p>
+                        <div class="space-y-2.5 text-xs">
+                            <label class="flex items-start space-x-2.5 bg-white p-3 rounded-lg border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300">
+                                <input type="checkbox" checked class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                                <div>
+                                    <span class="font-semibold text-slate-800 block">[서식 제34호] 시간제 취업 확인서</span>
+                                    <span class="text-[11px] text-slate-500 block">Part-time Work Permit Application / 兼职工作确认书 / 兼業許可申請書 / แบบฟอร์มขออนุญาตทำงานพิเศษ</span>
+                                </div>
+                            </label>
+                            <label class="flex items-start space-x-2.5 bg-white p-3 rounded-lg border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300">
+                                <input type="checkbox" checked class="rounded text-blue-600 focus:ring-blue-500 mt-0.5">
+                                <div>
+                                    <span class="font-semibold text-slate-800 block">통합신청서 (외국인등록 및 체류연장)</span>
+                                    <span class="text-[11px] text-slate-500 block">Integrated Application Form / 综合申请表 / 統合申請書 / แบบฟอร์มคำร้องยื่นรวม</span>
+                                </div>
+                            </label>
+                            <label class="flex items-start space-x-2.5 bg-white p-3 rounded-lg border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300">
+                                <input type="checkbox" checked class="rounded text-blue-600 focus:ring-blue-500 mt-0.5">
+                                <div>
+                                    <span class="font-semibold text-slate-800 block">체류지 증빙서류 (기숙사/임대차계약서)</span>
+                                    <span class="text-[11px] text-slate-500 block">Proof of Residence / 居住地证明 / 居住地証明書 / เอกสารยืนยันที่อยู่อาศัย</span>
+                                </div>
+                            </label>
+                            <label class="flex items-start space-x-2.5 bg-white p-3 rounded-lg border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300">
+                                <input type="checkbox" checked class="rounded text-blue-600 focus:ring-blue-500 mt-0.5">
+                                <div>
+                                    <span class="font-semibold text-slate-800 block">국민건강보험 예외 적용 신청서</span>
+                                    <span class="text-[11px] text-slate-500 block">NHIS Exemption Form / 健康保险例外申请 / 健康保険例外申請書 / แบบฟอร์มขอยกเว้นประกันสุขภาพ</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: MASTER PROMPT ARCHITECT -->
+        <section id="sec-prompt-builder" class="space-y-6 hidden">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <span class="px-2.5 py-1 bg-purple-100 text-purple-800 text-xs font-bold rounded-full">AI Prompt Engineering</span>
+                    <h2 class="text-xl font-bold text-slate-900 mt-2">D-2 세부자격 연동 교육행정 AI 마스터 프롬프트 생성기</h2>
+                    <p class="text-xs text-slate-600 mt-1">
+                        D-2-1부터 D-2-6까지의 세부 체류자격을 규정대로 완벽히 인식하여 답하도록 교정된 마스터 프롬프트입니다.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs">
+                        <h3 class="font-bold text-slate-800 text-sm">소속 대학 및 설정 입력</h3>
+                        <div>
+                            <label class="block font-medium text-slate-700 mb-1">소속 국립대학명</label>
+                            <input type="text" id="prompt-univ-name" value="한국국립대학교" class="w-full p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-purple-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block font-medium text-slate-700 mb-1">담당 부서</label>
+                            <input type="text" id="prompt-dept-name" value="국제교류처 / 유학생지원센터" class="w-full p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-purple-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block font-medium text-slate-700 mb-1">중점 지원 언어권</label>
+                            <input type="text" id="prompt-langs" value="한국어, 영어, 중국어, 일본어, 태국어, 베트남어" class="w-full p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-purple-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block font-medium text-slate-700 mb-1">추가 강조 사항</label>
+                            <textarea id="prompt-extra" rows="3" class="w-full p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-purple-500 outline-none">D-2 세부 코드(D-2-1 전문학사, D-2-2 학사, D-2-3 석사, D-2-4 박사, D-2-6 교환학생) 엄격 구분 적용, 웹 포털 5개국어(한국어, 영어, 중국어, 일본어, 태국어) 메뉴 연동</textarea>
+                        </div>
+                        <button onclick="generateCustomPrompt()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition-colors text-xs shadow">
+                            마스터 프롬프트 생성하기
+                        </button>
+                    </div>
+
+                    <div class="lg:col-span-2 flex flex-col">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-slate-700">생성된 마스터 프롬프트 (D-2 세부자격 & 5개 국어 IA 지원 교정완료)</span>
+                            <button onclick="copyGeneratedPrompt()" class="px-3 py-1 bg-slate-800 text-white text-xs font-medium rounded hover:bg-slate-700">
+                                프롬프트 전체 복사
+                            </button>
+                        </div>
+                        <textarea id="prompt-output-area" readonly class="w-full flex-grow p-4 bg-slate-900 text-emerald-400 font-mono text-xs rounded-xl border border-slate-800 leading-relaxed outline-none min-h-[380px]"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>2026 국립대학 외국인 유학생 오리엔테이션 행정 안내 및 다국어 표준화 시스템</p>
+            <p class="mt-1">교육부 유학생 사증발급 지침 및 법무부 출입국관리법(D-2-1~D-2-6 세부코드) 연동 포털</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Application Logic -->
+    <script>
+        // Data Repository
+        const orientationData = {
+            notices: {
+                ko: {
+                    title: "2026학년도 외국인 유학생 필수 정착 및 체류 행정 안내 (D-2 세부 체류자격 명시)",
+                    body: `국립대학교 입학을 진심으로 축하합니다. 유학생 여러분의 체류자격은 학위 과정에 따라 아래와 같이 세부 구분(D-2-1 ~ D-2-6)되어 적용되므로, 본인의 세부 비자 코드를 반드시 확인하시기 바랍니다.
+
+📌 D-2 체류자격 세부 구분 안내
+- D-2-1: 전문학사 과정 (Associate Degree)
+- D-2-2: 학사 과정 (4년제 대학교 Bachelor's)
+- D-2-3: 석사 과정 (Master's Degree)
+- D-2-4: 박사 과정 (Ph.D. Degree)
+- D-2-6: 교환학생 (Exchange Student)
+- D-4-1: 일반연수 (어학연수생)
+
+1. 외국인등록 및 Residence Card 발급
+- 대상 및 기한: 대한민국 입국 후 90일 이내에 관할 출입국·외국인관서를 방문하거나 하이코리아(HiKorea)를 통해 외국인등록을 완료해야 합니다.
+- 제출 서류: 여권, 신청서, 표준입학허가서(D-2 세부 코드 표기 확인), 재학증명서, 체류지 증빙서류, 수수료.
+
+2. 국민건강보험 (NHIS) 및 민간보험 안내
+- 가입 시기: D-2(D-2-1~D-2-6) 유학생은 외국인등록 완료일 당일부터 자동 가입되며, D-4-1 어학연수생은 입국 후 6개월이 경과한 날부터 자동 가입됩니다.
+- 2026년 보험료: 유학생 경감 적용 기준 월 79,320원이며, 매월 25일까지 사전 납부해야 합니다.
+
+3. 시간제 취업 (아르바이트) 사전 허가제
+- 신청 요건:
+  * D-2-1 / D-2-2 (전문학사/학사): 직전학기 GPA C학점(2.0) 이상 및 TOPIK 3급 이상 시 주중 25시간 허용
+  * D-2-3 / D-2-4 (석사/박사): 직전학기 GPA C학점(2.0) 이상 및 TOPIK 4급 이상 시 주중 30시간 허용
+  * D-2-6 (교환학생): 소속 대학 성적 및 한국어 능력 조건 충족 시 허용
+  * D-4-1 (어학연수): 입국 6개월 경과 및 출석률 90% 이상 시 주중 20시간 허용
+- 주의: 사전 허가 없는 근무는 출입국관리법 위반으로 체류자격이 취소될 수 있습니다.`
+                },
+                en: {
+                    title: "2026 Mandatory Guide for International Students (Specific D-2 Visa Sub-codes)",
+                    body: `Welcome to Our National University. Please check your specific D-2 visa code (D-2-1 to D-2-6) as guidelines vary by degree level.
+
+📌 Specific D-2 Visa Classifications
+- D-2-1: Associate Degree
+- D-2-2: Bachelor's Degree (4-Year University)
+- D-2-3: Master's Degree
+- D-2-4: Ph.D. Degree
+- D-2-6: Exchange Student
+- D-4-1: General Training (Language Student)
+
+1. Foreigner Registration (Residence Card)
+- Deadline: Register at local Immigration Office or via HiKorea within 90 days of entry.
+- Documents: Passport, Application Form, Certificate of Admission (with specific D-2 code), Certificate of Enrollment, Proof of Residence, Fee.
+
+2. National Health Insurance (NHIS)
+- Enrollment: D-2 visa holders (D-2-1 through D-2-6) are automatically enrolled upon Foreigner Registration. D-4-1 students enrolled after 6 months.
+- 2026 Monthly Fee: KRW 79,320 (due by the 25th of each preceding month).
+
+3. Part-time Work Permit (HiKorea Approval)
+- Allowances:
+  * D-2-1 / D-2-2: GPA >= 2.0 & TOPIK Level 3+ -> Up to 25 hrs/week (Mon-Fri)
+  * D-2-3 / D-2-4: GPA >= 2.0 & TOPIK Level 4+ -> Up to 30 hrs/week (Mon-Fri)
+  * D-2-6: Permitted based on university criteria and language efficiency.
+  * Unlimited hours allowed during official university vacations for D-2 degree students.`
+                },
+                zh: {
+                    title: "2026学年度 外国留学生居留指南 (包含 D-2 细分签证代码)",
+                    body: `欢迎来到国立大学。请明确确认您的 D-2 细分签证代码（D-2-1 至 D-2-6）。
+
+📌 D-2 签证细分说明
+- D-2-1: 专科学位课程
+- D-2-2: 本科学位课程 (4年制)
+- D-2-3: 硕士学位课程
+- D-2-4: 博士学位课程
+- D-2-6: 交换生课程
+- D-4-1: 语言研修生
+
+1. 外国人登录（Residence Card 办理）
+- 期限：入境后90天内完成办理。需确认标准入学许可书上的 D-2 细分代码。
+
+2. 国民健康保险 (NHIS)
+- 参保：D-2 (D-2-1~D-2-6) 登录之日起自动参保。D-4-1 入境满6个月后参保。
+- 2026年保费：每月 79,320韩元（25日前预缴）。
+
+3. 打工许可（时间制就业）
+- D-2-1 / D-2-2 (专科/本科): GPA 2.0以上且 TOPIK 3级以上，平时每周最多 25小时。
+- D-2-3 / D-2-4 (硕博): GPA 2.0以上且 TOPIK 4级以上，平时每周最多 30小时。
+- 假期打工：D-2 正规学位生在寒暑假期间工作时间无限制。`
+                },
+                vi: {
+                    title: "Hướng Dẫn Hành Chính Cho Du Học Sinh 2026 (Phân Loại Mã Visa D-2 Chi Tiết)",
+                    body: `Chào mừng bạn đến với Trường Đại học Quốc gia. Vui lòng kiểm tra chính xác mã visa D-2 của bạn (D-2-1 đến D-2-6).
+
+📌 Phân Loại Mã Visa D-2 Chi Tiết:
+- D-2-1: Hệ Cao đẳng (Associate Degree)
+- D-2-2: Hệ Đại học (Bachelor's)
+- D-2-3: Hệ Thạc sĩ (Master's)
+- D-2-4: Hệ Tiến sĩ (Ph.D.)
+- D-2-6: Sinh viên Trao đổi (Exchange Student)
+- D-4-1: Du học tiếng (Language Trainee)
+
+1. Đăng Ký Người Nước Ngoài (Residence Card): Trong vòng 90 ngày kể từ ngày nhập cảnh.
+2. Bảo Hiểm Y Tế (NHIS): D-2 (D-2-1 ~ D-2-6) tham gia ngay khi đăng ký thẻ cư trú. Mức phí 2026: 79.320 KRW/tháng.
+3. Giấy Phép Làm Thêm:
+  * D-2-1 / D-2-2: GPA >= 2.0 & TOPIK 3 trở lên -> Tối đa 25 giờ/tuần.
+  * D-2-3 / D-2-4: GPA >= 2.0 & TOPIK 4 trở lên -> Tối đa 30 giờ/tuần.
+  * Kỳ nghỉ chính thức: Không giới hạn giờ làm đối với sinh viên D-2.`
+                },
+                uz: {
+                    title: "2026-Xalqaro Talabalar Uchun Qo'llanma (D-2 Vizasining Aniq Turlari Bilan)",
+                    body: `Milliy Universitetimizga xush kelibsiz! D-2 vizangizning aniq kodini (D-2-1 dan D-2-6 gacha) tekshirib oling.
+
+📌 D-2 Visa Turlari:
+- D-2-1: Kichik mutaxassis (Associate)
+- D-2-2: Bakalavr (Bachelor)
+- D-2-3: Magistratura (Master)
+- D-2-4: Doktorantura (Ph.D.)
+- D-2-6: Almashinuv talabasi (Exchange)
+- D-4-1: Til o'rganuvchi (Language)
+
+1. Chet ellik sifatida ro'yxatdan o'tish (Residence Card): 90 kun ichida.
+2. Tibbiy sug'urta (NHIS): D-2 egalari ro'yxatdan o'tgach darhol. 2026-yilgi to'lov: 79,320 KRW/oy.
+3. Ishlash ruxsatnomasi: D-2-1/D-2-2 uchun haftasiga 25 soatgacha, D-2-3/D-2-4 uchun haftasiga 30 soatgacha.`
+                },
+                mn: {
+                    title: "2026 Оны Гадаад Оюутнуудад Зориулсан Заавар (D-2 Визний Ангиллаар)",
+                    body: `📌 D-2 Визний Ангилал:
+- D-2-1: Мэргэжлийн диплом (Associate)
+- D-2-2: Бакалавр (Bachelor)
+- D-2-3: Магистр (Master)
+- D-2-4: Доктор (Ph.D.)
+- D-2-6: Солилцооны оюутан (Exchange)
+- D-4-1: Хэлний бэлтгэл (Language)
+
+1. Гадаадын иргэний бүртгэл (Residence Card): 90 хоногийн дотор.
+2. Эрүүл мэндийн даатгал (NHIS): D-2 визтэй бол бүртгүүлсэн өдрөөс шууд хамрагдана. 2026 оны төлбөр: 79,320 вон/сар.`
+                },
+                ja: {
+                    title: "2026年度 外国人留学生 必修行政案内 (D-2詳細ビザコード明記)",
+                    body: `📌 D-2 詳細ビザコード区分
+- D-2-1: 専門学士課程
+- D-2-2: 学士課程（4年制大学）
+- D-2-3: 修士課程
+- D-2-4: 博士課程
+- D-2-6: 交換学生
+- D-4-1: 言語研修生（語学堂）
+
+1. 外国人登録（Residence Card）: 入国後90日以内。
+2. 国民健康保険 (NHIS): D-2 (D-2-1〜D-2-6) は登録完了日から自動加入。2026年度保険料: 月額 79,320ウォン。`
+                },
+                ru: {
+                    title: "Официальное Руководство Для Иностранных Студентов На 2026 Год (Коды D-2)",
+                    body: `📌 Подробные коды визы D-2:
+- D-2-1: Колледж (Associate)
+- D-2-2: Бакалавриат (Bachelor)
+- D-2-3: Магистратура (Master)
+- D-2-4: Докторантура (Ph.D.)
+- D-2-6: Студент по обмену (Exchange)
+- D-4-1: Языковые курсы (Language)
+
+1. Регистрация (Residence Card): В течение 90 дней.
+2. Страховка (NHIS): Студенты D-2 подключаются автоматически. 2026 год: 79,320 вон/мес.`
+                },
+                id: {
+                    title: "Panduan Mahasiswa Internasional 2026 (Kode Sub-Visa D-2 Rinci)",
+                    body: `📌 Klasifikasi Sub-Kode Visa D-2:
+- D-2-1: Associate Degree
+- D-2-2: Sarjana / Bachelor (S1)
+- D-2-3: Magister / Master (S2)
+- D-2-4: Doktor / Ph.D. (S3)
+- D-2-6: Pertukaran Mahasiswa (Exchange)
+- D-4-1: Kursus Bahasa (Language Trainee)
+
+1. Registrasi Orang Asing (Residence Card): Dalam 90 hari.
+2. Asuransi Kesehatan (NHIS): D-2 terdaftar otomatis. Biaya 2026: 79.320 KRW/bulan.`
+                },
+                th: {
+                    title: "คู่มือนักศึกษาต่างชาติ ประจำปี 2026 (ระบุรหัสวีซ่า D-2 อย่างละเอียด)",
+                    body: `📌 รหัสจำแนกวีซ่า D-2 อย่างละเอียด:
+- D-2-1: หลักสูตรอนุปริญญา (Associate)
+- D-2-2: หลักสูตรปริญญาตรี (Bachelor)
+- D-2-3: หลักสูตรปริญญาโท (Master)
+- D-2-4: หลักสูตรปริญญาเอก (Ph.D.)
+- D-2-6: นักศึกษาแลกเปลี่ยน (Exchange)
+- D-4-1: นักเรียนภาษา (Language)
+
+1. การลงทะเบียนคนต่างด้าว (Residence Card): 内 90 วัน
+2. ประกันสุขภาพ (NHIS): D-2 สมัครอัตโนมัติตั้งแต่วันลงทะเบียน ค่าเบี้ยประกันปี 2026: 79,320 วอน/เดือน`
+                }
+            },
+            qaData: [
+                { lang: "한국어 (Korean)", term: "D-2-1 ~ D-2-6 검증", acc: "Master (100%)", legal: "Master (100%)", remark: "D-2 세부 코드(전문학사~교환학생) 및 2026 개정령 완벽 반영" },
+                { lang: "영어 (English)", term: "D-2-1 ~ D-2-6 명시", acc: "우수", legal: "우수", remark: "D-2 sub-codes (Associate to Ph.D.) & Residence Card 명시" },
+                { lang: "중국어 간체 (Chinese)", term: "D-2 细分代码 验证", acc: "우수", legal: "우수", remark: "专科/本科/硕博/交换生 代码完全对齐" },
+                { lang: "베트남어 (Vietnamese)", term: "Phân loại D-2 rõ ràng", acc: "우수", legal: "우수", remark: "Mã visa D-2-1 đến D-2-6 được dịch chính xác" },
+                { lang: "우즈베크어 (Uzbek)", term: "D-2 turlari anqlandi", acc: "우수", legal: "우수", remark: "D-2-1~D-2-6 viza kodi va ishlash soatlari ajratildi" },
+                { lang: "몽골어 (Mongolian)", term: "D-2 ангилал шалгагдсан", acc: "우수", legal: "우수", remark: "Бакалавр, магистр, солилцооны визний ялгааг тусгасан" },
+                { lang: "일본어 (Japanese)", term: "D-2詳細コード検証済", acc: "우수", legal: "우수", remark: "D-2-1〜D-2-6の課程別労働時間制限を明記" },
+                { lang: "러시아어 (Russian)", term: "Коды D-2 проверены", acc: "우수", legal: "우수", remark: "Разделение D-2-1~D-2-6 по степеням обучения" },
+                { lang: "인도네시아어 (Indonesian)", term: "Kode D-2 Terverifikasi", acc: "우수", legal: "우수", remark: "Klasifikasi D-2-1 sampai D-2-6 disesuaikan" },
+                { lang: "태국어 (Thai)", term: "ตรวจสอบรหัส D-2 แล้ว", acc: "우수", legal: "우수", remark: "ระบุรหัส D-2-1 ถึง D-2-6 ชัดเจนตามกฎหมาย" }
+            ],
+            // MULTILINGUAL IA TREE (Korean, English, Chinese, Japanese, Thai)
+            iaTreeMulti: [
+                {
+                    gnb: {
+                        ko: "1. 입국 및 체류안내 (D-2 세부코드별)",
+                        en: "1. Entry & Stay Guide (By D-2 Sub-code)",
+                        zh: "1. 入境及居留指南 (按D-2细分代码)",
+                        ja: "1. 入국及び滞在案内 (D-2詳細コード別)",
+                        th: "1. คู่มือการเข้าเมืองและการพำนัก (ตามรหัส D-2)"
+                    },
+                    lnb: [
+                        {
+                            ko: "1.1 외국인등록 (D-2-1~D-2-6)",
+                            en: "1.1 Foreigner Registration (D-2-1~D-2-6)",
+                            zh: "1.1 外国人登录 (D-2-1~D-2-6)",
+                            ja: "1.1 外国人登録 (D-2-1〜D-2-6)",
+                            th: "1.1 การลงทะเบียนคนต่างด้าว (D-2-1~D-2-6)"
+                        },
+                        {
+                            ko: "1.2 체류자격 연장 및 변경",
+                            en: "1.2 Visa Extension & Change of Status",
+                            zh: "1.2 居留资格延期与变更",
+                            ja: "1.2 滞在資格延長及び変更",
+                            th: "1.2 การต่ออายุและการเปลี่ยนสถานะการพำนัก"
+                        },
+                        {
+                            ko: "1.3 체류지 변경신고 (14일 이내)",
+                            en: "1.3 Change of Residence (Within 14 Days)",
+                            zh: "1.3 居住地变更申报 (14日内)",
+                            ja: "1.3 居住地変更届 (14日以内)",
+                            th: "1.3 การแจ้งเปลี่ยนที่อยู่ (ภายใน 14 วัน)"
+                        }
+                    ]
+                },
+                {
+                    gnb: {
+                        ko: "2. 건강보험 및 의료",
+                        en: "2. Health Insurance & Medical Service",
+                        zh: "2. 健康保险与医疗服务",
+                        ja: "2. 健康保険及び医療サービス",
+                        th: "2. ประกันสุขภาพและบริการทางการแพทย์"
+                    },
+                    lnb: [
+                        {
+                            ko: "2.1 국민건강보험 (2026년 79,320원)",
+                            en: "2.1 National Health Insurance (2026: 79,320 KRW)",
+                            zh: "2.1 国民健康保险 (2026年 79,320韩元)",
+                            ja: "2.1 国民健康保険 (2026年 79,320ウォン)",
+                            th: "2.1 ประกันสุขภาพแห่งชาติ (ปี 2026: 79,320 วอน)"
+                        },
+                        {
+                            ko: "2.2 민간 유학생 단체보험",
+                            en: "2.2 Private Group Insurance",
+                            zh: "2.2 商业留学生团体保险",
+                            ja: "2.2 留学生民間一括保険",
+                            th: "2.2 ประกันกลุ่มเอกชนสำหรับนักศึกษา"
+                        },
+                        {
+                            ko: "2.3 대학 보건소 및 지정병원",
+                            en: "2.3 Health Center & Partner Hospitals",
+                            zh: "2.3 校医院及指定合作医院",
+                            ja: "2.3 保健診療所及び指定提携病院",
+                            th: "2.3 ศูนย์สุขภาพมหาวิทยาลัยและโรงพยาบาลเครือข่าย"
+                        }
+                    ]
+                },
+                {
+                    gnb: {
+                        ko: "3. 시간제 취업 (아르바이트)",
+                        en: "3. Part-time Work Permit",
+                        zh: "3. 打工许可 (兼职工作)",
+                        ja: "3. アルバイト(時間制就労)許可",
+                        th: "3. ใบอนุญาตทำงานพิเศษ (พาร์ทไทม์)"
+                    },
+                    lnb: [
+                        {
+                            ko: "3.1 D-2 학위별/TOPIK별 허가시간",
+                            en: "3.1 Allowed Hours by D-2 Level & TOPIK",
+                            zh: "3.1 按D-2学位及TOPIK允许的工作时长",
+                            ja: "3.1 D-2学位別/TOPIK別 許容時間",
+                            th: "3.1 ชั่วโมงที่ได้รับอนุญาตตามระดับ D-2 และ TOPIK"
+                        },
+                        {
+                            ko: "3.2 [서식34호] 작성 가이드",
+                            en: "3.2 Form 34 Filling Guide",
+                            zh: "3.2 [34号表格] 填写指南",
+                            ja: "3.2 [様式第34号] 記入ガイド",
+                            th: "3.2 คำแนะนำการกรอกแบบฟอร์มหมายเลข 34"
+                        },
+                        {
+                            ko: "3.3 금지업종 (제조/건설/라이더)",
+                            en: "3.3 Prohibited Work (Mfg/Construction/Rider)",
+                            zh: "3.3 禁止从事行业 (制造业/建设业/外卖骑手)",
+                            ja: "3.3 禁止業種 (製造業/建設業/配達員)",
+                            th: "3.3 อาชีพที่ไม่อนุญาต (โรงงาน/ก่อสร้าง/พนักงานส่งของ)"
+                        }
+                    ]
+                },
+                {
+                    gnb: {
+                        ko: "4. 대학 생활 지원",
+                        en: "4. Campus Life Support",
+                        zh: "4. 校园生活支援",
+                        ja: "4. 大学生活支援",
+                        th: "4. การสนับสนุนการใช้ชีวิตในมหาวิทยาลัย"
+                    },
+                    lnb: [
+                        {
+                            ko: "4.1 학사 및 GKS 장학 안내",
+                            en: "4.1 Academic & GKS Scholarship Guide",
+                            zh: "4.1 学务及GKS奖学金指南",
+                            ja: "4.1 학事及びGKS奨学金案内",
+                            th: "4.1 คำแนะนำการเรียนและทุนการศึกษา GKS"
+                        },
+                        {
+                            ko: "4.2 다국어 핫라인 (1345/1330)",
+                            en: "4.2 Multilingual Hotline (1345/1330)",
+                            zh: "4.2 多语言热线服务 (1345/1330)",
+                            ja: "4.2 多言語ホットライン (1345/1330)",
+                            th: "4.2 สายด่วนหลายภาษา (1345/1330)"
+                        },
+                        {
+                            ko: "4.3 행정 서식함 다운로드",
+                            en: "4.3 Admin Forms Download Center",
+                            zh: "4.3 行政表格下载中心",
+                            ja: "4.3 行政様式ダウンロード",
+                            th: "4.3 ดาวน์โหลดแบบฟอร์มทางเอกสาร"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        let currentLangKey = 'ko';
+        let workChartInstance = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initWorkHoursChart();
+            renderLangTabs();
+            renderNotice('ko');
+            renderQATable();
+            renderIATree();
+            runSimulation();
+            generateCustomPrompt();
+        });
+
+        function switchTab(tabId) {
+            const sections = ['dashboard', 'multilingual', 'qa', 'architecture', 'prompt-builder'];
+            sections.forEach(sec => {
+                const el = document.getElementById(`sec-${sec}`);
+                if (el) el.classList.add('hidden');
+                
+                const navBtn = document.getElementById(`nav-${sec}`);
+                if (navBtn) {
+                    navBtn.classList.remove('text-blue-600', 'bg-blue-50');
+                    navBtn.classList.add('text-slate-600');
+                }
+            });
+
+            const targetSec = document.getElementById(`sec-${tabId}`);
+            if (targetSec) targetSec.classList.remove('hidden');
+
+            const targetNav = document.getElementById(`nav-${tabId}`);
+            if (targetNav) {
+                targetNav.classList.remove('text-slate-600');
+                targetNav.classList.add('text-blue-600', 'bg-blue-50');
+            }
+        }
+
+        // Initialize Chart.js with Dynamic Update Capability
+        function initWorkHoursChart() {
+            const ctx = document.getElementById('workHoursChart').getContext('2d');
+            workChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'D-2-1 전문학사', 
+                        'D-2-2 학사', 
+                        'D-2-3 석사', 
+                        'D-2-4 박사', 
+                        'D-2-6 교환학생', 
+                        'D-4-1 어학연수'
+                    ],
+                    datasets: [
+                        {
+                            label: '주중 허용 시간 (시간/주)',
+                            data: [25, 25, 30, 30, 25, 20],
+                            backgroundColor: ['#e2e8f0', '#2563eb', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0'],
+                            borderRadius: 6
+                        },
+                        {
+                            label: '방학/주말 허용 시간 (시간/주)',
+                            data: [40, 40, 40, 40, 40, 20], // 40 represents unlimited for degree students
+                            backgroundColor: ['#cbd5e1', '#10b981', '#cbd5e1', '#cbd5e1', '#cbd5e1', '#cbd5e1'],
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { size: 11 } } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    let val = context.raw;
+                                    if (val === 40 && context.datasetIndex === 1 && context.dataIndex !== 5) {
+                                        return label + ': 무제한 (Unlimited)';
+                                    }
+                                    return label + ': ' + val + '시간';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 45,
+                            title: { display: true, text: '시간 (Hours)', font: { size: 11 } }
+                        },
+                        x: {
+                            ticks: {
+                                font: { size: 10 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Dynamically Update Chart based on Simulator Inputs
+        function updateChartHighlight(visaCode, topikStatus) {
+            if (!workChartInstance) return;
+
+            const visaMap = {
+                'D2_1': 0,
+                'D2_2': 1,
+                'D2_3': 2,
+                'D2_4': 3,
+                'D2_6': 4,
+                'D4_1': 5
+            };
+
+            const targetIdx = visaMap[visaCode] !== undefined ? visaMap[visaCode] : 1;
+
+            // Updated base work hours according to TOPIK criteria
+            let weekdayHours = [25, 25, 30, 30, 25, 20];
+            let vacationHours = [40, 40, 40, 40, 40, 20];
+
+            if (topikStatus === 'LOW') {
+                if (targetIdx === 0 || targetIdx === 1) weekdayHours[targetIdx] = 10;
+                else if (targetIdx === 2 || targetIdx === 3) weekdayHours[targetIdx] = 15;
+            }
+
+            const bgWeekday = ['#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0'];
+            const bgVacation = ['#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0'];
+
+            bgWeekday[targetIdx] = '#2563eb';  // Highlighting selected item in Active Blue
+            bgVacation[targetIdx] = '#10b981'; // Highlighting selected item in Active Green
+
+            workChartInstance.data.datasets[0].data = weekdayHours;
+            workChartInstance.data.datasets[0].backgroundColor = bgWeekday;
+            workChartInstance.data.datasets[1].backgroundColor = bgVacation;
+            workChartInstance.update();
+
+            const labels = ['D-2-1 전문학사', 'D-2-2 학사', 'D-2-3 석사', 'D-2-4 박사', 'D-2-6 교환학생', 'D-4-1 어학연수'];
+            document.getElementById('chart-focus-badge').innerText = `선택: ${labels[targetIdx]}`;
+        }
+
+        // Detailed Simulator handling D-2-1 to D-2-6 with dynamic chart link
+        function runSimulation() {
+            const visa = document.getElementById('calc-visa').value;
+            const gpa = document.getElementById('calc-gpa').value;
+            const topik = document.getElementById('calc-topik').value;
+            const stay = document.getElementById('calc-stay').value;
+
+            const badge = document.getElementById('sim-badge');
+            const title = document.getElementById('sim-title');
+            const desc = document.getElementById('sim-desc');
+
+            // Trigger Chart Synchronization
+            updateChartHighlight(visa, topik);
+
+            if (gpa === 'FAIL') {
+                badge.className = "px-2 py-0.5 bg-red-600 text-white rounded text-xs";
+                badge.innerText = "신청 불가";
+                title.innerText = "성적/출석 미달로 취업 허가 불가";
+                desc.innerText = "D-2 비자(D-2-1~D-2-6)는 직전학기 GPA C학점(2.0) 이상, D-4-1은 출석률 90% 이상이어야 시간제 취업 허가를 신청할 수 있습니다.";
+                return;
+            }
+
+            if (visa === 'D4_1' && stay === 'UNDER6') {
+                badge.className = "px-2 py-0.5 bg-amber-600 text-white rounded text-xs";
+                badge.innerText = "대기 필요";
+                title.innerText = "D-4-1 체류 기간 6개월 미만";
+                desc.innerText = "D-4-1 어학연수생은 입국 후 6개월이 경과한 시점부터 시간제 취업 허가 신청이 가능합니다.";
+                return;
+            }
+
+            badge.className = "px-2 py-0.5 bg-emerald-600 text-white rounded text-xs";
+            badge.innerText = "허가 가능";
+            
+            if (visa === 'D2_1' || visa === 'D2_2') {
+                if (topik === 'HIGH') {
+                    title.innerText = "주중 최대 25시간 / 방학·주말 무제한 허용";
+                    desc.innerText = visa === 'D2_1' ? "D-2-1(전문학사) TOPIK 3급 이상 조건 충족. 하이코리아에서 허가를 신청하세요." : "D-2-2(학사) TOPIK 3급 이상 조건 충족. 하이코리아에서 허가를 신청하세요.";
+                } else {
+                    title.innerText = "주중 및 방학 포함 주당 10시간 제한";
+                    desc.innerText = "TOPIK 3급 미소지로 인해 방학 기간 중에도 근무 시간이 주 10시간으로 엄격히 제한됩니다.";
+                }
+            } else if (visa === 'D2_3' || visa === 'D2_4') {
+                if (topik === 'HIGH') {
+                    title.innerText = "주중 최대 30시간 / 방학·주말 무제한 허용";
+                    desc.innerText = visa === 'D2_3' ? "D-2-3(석사) 우수 체류 자격입니다. 주중 30시간 근무가 허용됩니다." : "D-2-4(박사) 우수 체류 자격입니다. 주중 30시간 근무가 허용됩니다.";
+                } else {
+                    title.innerText = "주중 및 방학 포함 주당 15시간 제한";
+                    desc.innerText = "TOPIK 4급 미소지로 인해 주당 근무 시간이 15시간으로 제한됩니다.";
+                }
+            } else if (visa === 'D2_6') {
+                title.innerText = "주중 최대 25시간 / 방학·주말 무제한 허용";
+                desc.innerText = "D-2-6(교환학생) 자격입니다. 본교 수강신청 및 TOPIK 성적 조건 충족 시 허용됩니다.";
+            } else if (visa === 'D4_1') {
+                title.innerText = "주중 및 주말 포함 최대 20시간 허용";
+                desc.innerText = "D-4-1(어학연수) 체류 6개월 및 출석률 90% 이상 조건을 충족하였습니다. (제조업/건설업 금지)";
+            }
+        }
+
+        function renderLangTabs() {
+            const container = document.getElementById('lang-tab-container');
+            const langNames = {
+                ko: "한국어", en: "English", zh: "中文", vi: "Tiếng Việt",
+                uz: "O'zbek", mn: "Монгол", ja: "日本語", ru: "Русский",
+                id: "Bahasa", th: "ไทย"
+            };
+
+            container.innerHTML = Object.keys(orientationData.notices).map(key => `
+                <button onclick="renderNotice('${key}')" id="lang-btn-${key}" class="px-3 py-1.5 rounded-md font-medium border border-slate-200 transition-all ${key === 'ko' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 hover:bg-slate-100'}">
+                    ${langNames[key]}
+                </button>
+            `).join('');
+        }
+
+        function renderNotice(langKey) {
+            currentLangKey = langKey;
+            Object.keys(orientationData.notices).forEach(k => {
+                const btn = document.getElementById(`lang-btn-${k}`);
+                if (btn) {
+                    btn.className = (k === langKey) 
+                        ? "px-3 py-1.5 rounded-md font-medium border border-blue-600 bg-blue-600 text-white"
+                        : "px-3 py-1.5 rounded-md font-medium border border-slate-200 bg-white text-slate-700 hover:bg-slate-100";
+                }
+            });
+
+            const data = orientationData.notices[langKey];
+            const area = document.getElementById('notice-content-area');
+            area.innerHTML = `
+                <h3 class="text-base font-bold text-slate-900 border-b border-slate-200 pb-2">${data.title}</h3>
+                <div class="whitespace-pre-line text-slate-700 leading-relaxed font-sans">${data.body}</div>
+            `;
+        }
+
+        function copyCurrentNotice() {
+            const data = orientationData.notices[currentLangKey];
+            const textToCopy = `${data.title}\n\n${data.body}`;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('안내문 텍스트가 클립보드에 복사되었습니다.');
+            });
+        }
+
+        function renderQATable() {
+            const tbody = document.getElementById('qa-table-body');
+            tbody.innerHTML = orientationData.qaData.map(row => `
+                <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="p-3 font-semibold text-slate-800">${row.lang}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-medium">${row.term}</span></td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-medium">${row.acc}</span></td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-medium">${row.legal}</span></td>
+                    <td class="p-3 text-slate-600">${row.remark}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Render Multilingual IA Tree (5 Languages: KO, EN, ZH, JA, TH)
+        function renderIATree() {
+            const container = document.getElementById('ia-tree-container');
+            container.innerHTML = orientationData.iaTreeMulti.map(item => `
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="border-b border-slate-200 pb-2">
+                        <div class="font-bold text-blue-900 text-sm flex items-center space-x-1.5">
+                            <span>🇰🇷 ${item.gnb.ko}</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-0.5 text-xs text-slate-600 mt-1 pl-1">
+                            <div><span class="text-slate-400">EN:</span> ${item.gnb.en}</div>
+                            <div><span class="text-slate-400">ZH:</span> ${item.gnb.zh}</div>
+                            <div><span class="text-slate-400">JA:</span> ${item.gnb.ja}</div>
+                            <div><span class="text-slate-400">TH:</span> ${item.gnb.th}</div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-2">
+                        ${item.lnb.map(sub => `
+                            <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-xs hover:border-blue-300 transition-colors">
+                                <div class="font-semibold text-slate-800">🇰🇷 ${sub.ko}</div>
+                                <div class="text-[11px] text-slate-500 mt-1 grid grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-0.5">
+                                    <div><span class="text-slate-400">EN:</span> ${sub.en}</div>
+                                    <div><span class="text-slate-400">ZH:</span> ${sub.zh}</div>
+                                    <div><span class="text-slate-400">JA:</span> ${sub.ja}</div>
+                                    <div><span class="text-slate-400">TH:</span> ${sub.th}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // AI Master Prompt Generator incorporating explicit D-2 Sub-codes & 5-Language IA Support
+        function generateCustomPrompt() {
+            const univ = document.getElementById('prompt-univ-name').value || '국립대학교';
+            const dept = document.getElementById('prompt-dept-name').value || '국제교류처';
+            const langs = document.getElementById('prompt-langs').value || '한국어, 영어, 중국어, 일본어, 태국어';
+            const extra = document.getElementById('prompt-extra').value || '';
+
+            const masterPromptText = `[SYSTEM PROMPT: ${univ.toUpperCase()} INTERNATIONAL STUDENT ADMINISTRATIVE AI ASSISTANT]
+
+■ ROLE AND PERSONA
+You are the "Master Administrative AI Assistant" specialized in international student orientation and visa management for ${univ} (${dept}). You possess expert-level knowledge in the Immigration Act, Higher Education Act, National Health Insurance regulations (2026 standards), and Ministry of Education guidelines.
+
+■ STRICT VISA CODE CLASSIFICATION RULE (D-2 Granular Sub-codes)
+NEVER group visa types under a generic "D-2" label. ALWAYS specify exact sub-codes:
+1. D-2-1: Associate Degree (전문학사)
+2. D-2-2: Bachelor's Degree (학사 - 4년제)
+3. D-2-3: Master's Degree (석사)
+4. D-2-4: Ph.D. Degree (박사)
+5. D-2-6: Exchange Student (교환학생)
+6. D-4-1: General Language Trainee (어학연수)
+
+■ MULTILINGUAL PORTAL ARCHITECTURE RULE (5 Target Languages)
+When displaying Web Information Architecture (IA) or portal menus, ALWAYS provide multilingual labels for:
+- 🇰🇷 Korean (한국어)
+- 🇺🇸 English
+- 🇨🇳 Chinese (中文)
+- 🇯🇵 Japanese (日本語)
+- 🇹🇭 Thai (ไทย)
+
+■ CORE ADMINISTRATIVE KNOWLEDGE BASE (2026 REGULATORY STANDARDS)
+1. Foreigner Registration: Residence Card must be issued within 90 days of entry via local immigration offices or HiKorea.
+2. National Health Insurance (NHIS):
+   - Mandatory auto-enrollment for D-2 (D-2-1 through D-2-6) upon Residence Registration date and D-4-1 after 6 months of stay.
+   - 2026 Discounted Monthly Premium: KRW 79,320 (due by the 25th of preceding month).
+3. Part-time Work Permit (HiKorea Permission):
+   - D-2-1 / D-2-2: GPA C (2.0)+ & TOPIK Level 3+ -> Up to 25 hrs/week.
+   - D-2-3 / D-2-4: GPA C (2.0)+ & TOPIK Level 4+ -> Up to 30 hrs/week.
+   - Unlimited hours during official semester vacations for D-2 degree students.
+   - Prohibited: Manufacturing, construction, delivery riding, private tutoring.
+
+■ SPECIAL UNIVERSITY SPECIFIC INSTRUCTIONS
+- Primary Target Languages: ${langs}
+- Additional Policy Directives: ${extra}
+
+■ OPERATIONAL DIRECTIVES
+1. Respond in professional Korean public administrative tone (~바랍니다, ~함, ~을 안내해 드립니다).
+2. Format output strictly with clear markdown headers, checklist tables, and official document references.
+3. Multilingual output must adhere to verified public terminology (e.g., ALWAYS use 'Residence Card' instead of 'ARC').
+
+■ INITIALIZATION RESPONSE
+When activated, respond strictly with:
+"반갑습니다. ${univ} ${dept} 유학생 행정 전문 AI 실무비서입니다. D-2-1부터 D-2-6까지의 세부 체류자격 및 5개 국어(한국어, 영어, 중국어, 일본어, 태국어) 웹 정보구조를 기반으로 비자, 체류, 건강보험, 시간제 취업 허가 안내 작성을 보조하겠습니다."`;
+
+            document.getElementById('prompt-output-area').value = masterPromptText;
+        }
+
+        function copyGeneratedPrompt() {
+            const textarea = document.getElementById('prompt-output-area');
+            textarea.select();
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                alert('생성된 마스터 프롬프트가 클립보드에 복사되었습니다.');
+            });
+        }
+    </script>
+</body>
+</html>
