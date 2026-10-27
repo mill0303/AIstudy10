@@ -96,11 +96,12 @@
 
         <!-- SECTION 1: DASHBOARD & INTERACTIVE CALCULATOR -->
         <section id="sec-dashboard" class="space-y-6">
+            <div id="dash-lang-selector" class="flex flex-wrap gap-1 text-xs font-semibold"></div>
             <div class="bg-blue-900 text-white p-6 rounded-2xl shadow-lg relative overflow-hidden">
                 <div class="relative z-10 max-w-3xl">
-                    <span class="inline-block px-3 py-1 bg-blue-700 text-blue-100 text-xs font-semibold rounded-full mb-3">2026년도 법무부 D-2 세부 체류자격(D-2-1 ~ D-2-6) 실시간 연동 반영</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold mb-2">외국인 유학생 세부 체류자격별 행정 종합 요약</h2>
-                    <p class="text-blue-100 text-sm leading-relaxed">
+                    <span class="inline-block px-3 py-1 bg-blue-700 text-blue-100 text-xs font-semibold rounded-full mb-3" data-i18n="h_badge">2026년도 법무부 D-2 세부 체류자격(D-2-1 ~ D-2-6) 실시간 연동 반영</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-2" data-i18n="h_title">외국인 유학생 세부 체류자격별 행정 종합 요약</h2>
+                    <p class="text-blue-100 text-sm leading-relaxed" data-i18n="h_desc">
                         세부 체류 자격을 진단기에서 선택하면 **왼쪽 그래프의 허용 근무 시간이 즉시 실시간 연동**되어 강조 표시됩니다.
                     </p>
                 </div>
@@ -108,27 +109,27 @@
 
             <!-- Visa Sub-code Breakdown Quick Reference -->
             <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">📌 D-2 체류자격 세부 구분 기준 (출입국관리법 시행령)</h3>
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3" data-i18n="ref_title">📌 D-2 체류자격 세부 구분 기준 (출입국관리법 시행령)</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-xs">
                     <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
                         <span class="font-bold text-blue-700 block">D-2-1</span>
-                        <span class="text-slate-600 font-medium">전문학사 과정</span>
+                        <span class="text-slate-600 font-medium" data-i18n="r21">전문학사 과정</span>
                     </div>
                     <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
                         <span class="font-bold text-blue-700 block">D-2-2</span>
-                        <span class="text-slate-600 font-medium">학사 과정 (4년제)</span>
+                        <span class="text-slate-600 font-medium" data-i18n="r22">학사 과정 (4년제)</span>
                     </div>
                     <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
                         <span class="font-bold text-blue-700 block">D-2-3</span>
-                        <span class="text-slate-600 font-medium">석사 과정</span>
+                        <span class="text-slate-600 font-medium" data-i18n="r23">석사 과정</span>
                     </div>
                     <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
                         <span class="font-bold text-blue-700 block">D-2-4</span>
-                        <span class="text-slate-600 font-medium">박사 과정</span>
+                        <span class="text-slate-600 font-medium" data-i18n="r24">박사 과정</span>
                     </div>
                     <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
                         <span class="font-bold text-blue-700 block">D-2-6</span>
-                        <span class="text-slate-600 font-medium">교환학생 과정</span>
+                        <span class="text-slate-600 font-medium" data-i18n="r26">교환학생 과정</span>
                     </div>
                 </div>
             </div>
@@ -136,24 +137,24 @@
             <!-- Key Metric Cards -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <div class="text-xs text-slate-500 font-medium">외국인등록 기한</div>
-                    <div class="text-2xl font-bold text-slate-900 mt-1">입국 후 90일</div>
-                    <div class="text-xs text-blue-600 mt-2 font-medium">Residence Card 필수 발급</div>
+                    <div class="text-xs text-slate-500 font-medium" data-i18n="m1_l">외국인등록 기한</div>
+                    <div class="text-2xl font-bold text-slate-900 mt-1" data-i18n="m1_v">입국 후 90일</div>
+                    <div class="text-xs text-blue-600 mt-2 font-medium" data-i18n="m1_s">Residence Card 필수 발급</div>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <div class="text-xs text-slate-500 font-medium">2026 건강보험료 (경감 적용)</div>
-                    <div class="text-2xl font-bold text-blue-600 mt-1">월 79,320원</div>
-                    <div class="text-xs text-slate-500 mt-2">매월 25일 사전 납부 의무</div>
+                    <div class="text-xs text-slate-500 font-medium" data-i18n="m2_l">2026 건강보험료 (경감 적용)</div>
+                    <div class="text-2xl font-bold text-blue-600 mt-1" data-i18n="m2_v">월 79,320원</div>
+                    <div class="text-xs text-slate-500 mt-2" data-i18n="m2_s">매월 25일 사전 납부 의무</div>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <div class="text-xs text-slate-500 font-medium">D-2-2 학부 (TOPIK 3급)</div>
-                    <div class="text-2xl font-bold text-emerald-600 mt-1">주중 25시간</div>
-                    <div class="text-xs text-emerald-700 mt-2">방학/주말 무제한 허용</div>
+                    <div class="text-xs text-slate-500 font-medium" data-i18n="m3_l">D-2-2 학부 (TOPIK 3급)</div>
+                    <div class="text-2xl font-bold text-emerald-600 mt-1" data-i18n="m3_v">주중 25시간</div>
+                    <div class="text-xs text-emerald-700 mt-2" data-i18n="m3_s">방학/주말 무제한 허용</div>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <div class="text-xs text-slate-500 font-medium">D-2-3/4 대학원 (TOPIK 4급)</div>
-                    <div class="text-2xl font-bold text-purple-600 mt-1">주중 30시간</div>
-                    <div class="text-xs text-purple-700 mt-2">방학/주말 무제한 허용</div>
+                    <div class="text-xs text-slate-500 font-medium" data-i18n="m4_l">D-2-3/4 대학원 (TOPIK 4급)</div>
+                    <div class="text-2xl font-bold text-purple-600 mt-1" data-i18n="m4_v">주중 30시간</div>
+                    <div class="text-xs text-purple-700 mt-2" data-i18n="m4_s">방학/주말 무제한 허용</div>
                 </div>
             </div>
 
@@ -162,10 +163,10 @@
                 <!-- Visual Chart 1: Dynamically Linked Chart -->
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col">
                     <div class="flex justify-between items-start mb-1">
-                        <h3 class="text-base font-bold text-slate-900">시간제 취업 허용 시간 (진단기 실시간 연동)</h3>
+                        <h3 class="text-base font-bold text-slate-900" data-i18n="ch_title">시간제 취업 허용 시간 (진단기 실시간 연동)</h3>
                         <span id="chart-focus-badge" class="px-2 py-0.5 bg-blue-100 text-blue-800 text-[11px] font-bold rounded">선택: D-2-2 학사</span>
                     </div>
-                    <p class="text-xs text-slate-500 mb-4">우측 진단기에서 선택한 세부 비자 항목이 차트에서 실시간으로 강조(Highlight)됩니다.</p>
+                    <p class="text-xs text-slate-500 mb-4" data-i18n="ch_desc">우측 진단기에서 선택한 세부 비자 항목이 차트에서 실시간으로 강조(Highlight)됩니다.</p>
                     <div class="chart-container my-auto">
                         <canvas id="workHoursChart"></canvas>
                     </div>
@@ -173,12 +174,12 @@
 
                 <!-- Interactive Calculator Component -->
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col">
-                    <h3 class="text-base font-bold text-slate-900 mb-1">세부 체류자격별 아르바이트 자격 진단기</h3>
-                    <p class="text-xs text-slate-500 mb-4">체류 자격을 선택하시면 좌측 차트 데이터가 실시간으로 변경됩니다.</p>
+                    <h3 class="text-base font-bold text-slate-900 mb-1" data-i18n="k_title">세부 체류자격별 아르바이트 자격 진단기</h3>
+                    <p class="text-xs text-slate-500 mb-4" data-i18n="k_desc">체류 자격을 선택하시면 좌측 차트 데이터가 실시간으로 변경됩니다.</p>
                     
                     <div class="space-y-4 text-sm flex-grow">
                         <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">세부 체류 자격 (Detailed Visa Code)</label>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1" data-i18n="k_visa">세부 체류 자격 (Detailed Visa Code)</label>
                             <select id="calc-visa" onchange="runSimulation()" class="w-full p-2.5 bg-slate-50 border border-blue-400 rounded-lg text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 outline-none font-bold">
                                 <option value="D2_1">D-2-1 전문학사 과정 (Junior College)</option>
                                 <option value="D2_2" selected>D-2-2 학사 과정 (4년제 대학교 Bachelor)</option>
@@ -191,17 +192,17 @@
 
                         <div class="grid grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">직전학기 평점 / 출석률</label>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1" data-i18n="k_gpa">직전학기 평점 / 출석률</label>
                                 <select id="calc-gpa" onchange="runSimulation()" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-                                    <option value="PASS">C학점(2.0) 이상 / 출석 90% 이상</option>
-                                    <option value="FAIL">C학점 미만 / 출석 90% 미만</option>
+                                    <option value="PASS" data-i18n="k_gpa_pass">C학점(2.0) 이상 / 출석 90% 이상</option>
+                                    <option value="FAIL" data-i18n="k_gpa_fail">C학점 미만 / 출석 90% 미만</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">한국어 능력 (TOPIK)</label>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1" data-i18n="k_topik">한국어 능력 (TOPIK)</label>
                                 <select id="calc-topik" onchange="runSimulation()" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-                                    <option value="HIGH">기준 충족 (D-2-1/2: 3급, D-2-3/4: 4급)</option>
-                                    <option value="LOW">기준 미충족 (미소지 또는 기준 미달)</option>
+                                    <option value="HIGH" data-i18n="k_topik_hi">기준 충족 (D-2-1/2: 3급, D-2-3/4: 4급)</option>
+                                    <option value="LOW" data-i18n="k_topik_lo">기준 미충족 (미소지 또는 기준 미달)</option>
                                 </select>
                             </div>
                         </div>
@@ -794,7 +795,8 @@
             renderNotice('ko');
             renderQATable();
             renderIATree();
-            runSimulation();
+            renderDashLangTabs();
+            applyDashLang('ko');
         });
 
         function switchTab(tabId) {
@@ -820,33 +822,51 @@
             }
         }
 
+        const dashKeys = ["h_badge", "h_title", "h_desc", "ref_title", "r21", "r22", "r23", "r24", "r26", "v21", "v22", "v23", "v24", "v26", "v41", "m1_l", "m1_v", "m1_s", "m2_l", "m2_v", "m2_s", "m3_l", "m3_v", "m3_s", "m4_l", "m4_v", "m4_s", "ch_title", "ch_desc", "ch_wk", "ch_vac", "ch_unl", "ch_hours", "ch_axis", "ch_sel", "k_title", "k_desc", "k_visa", "k_gpa", "k_gpa_pass", "k_gpa_fail", "k_topik", "k_topik_hi", "k_topik_lo", "b_fail", "b_ok", "t_fail", "d_fail", "t25", "d_hi12", "t10", "d10", "t30", "d30", "t15", "d15", "d26", "t20", "d20"];
+        const dashI18n = {"ko": ["2026년도 법무부 D-2 세부 체류자격(D-2-1 ~ D-2-6) 실시간 연동 반영", "외국인 유학생 세부 체류자격별 행정 종합 요약", "세부 체류 자격을 진단기에서 선택하면 <b>왼쪽 그래프의 허용 근무 시간이 즉시 실시간 연동</b>되어 강조 표시됩니다.", "📌 D-2 체류자격 세부 구분 기준 (출입국관리법 시행령)", "전문학사 과정", "학사 과정 (4년제)", "석사 과정", "박사 과정", "교환학생 과정", "전문학사", "학사", "석사", "박사", "교환학생", "어학연수", "외국인등록 기한", "입국 후 90일", "Residence Card 필수 발급", "2026 건강보험료 (경감 적용)", "월 79,320원", "매월 25일 사전 납부 의무", "D-2-2 학부 (TOPIK 3급)", "주중 25시간", "방학/주말 무제한 허용", "D-2-3/4 대학원 (TOPIK 4급)", "주중 30시간", "방학/주말 무제한 허용", "시간제 취업 허용 시간 (진단기 실시간 연동)", "우측 진단기에서 선택한 세부 비자 항목이 차트에서 실시간으로 강조(Highlight)됩니다.", "주중 허용 시간 (시간/주)", "방학/주말 허용 시간 (시간/주)", "무제한", "시간", "시간 (Hours)", "선택: ", "세부 체류자격별 아르바이트 자격 진단기", "체류 자격을 선택하시면 좌측 차트 데이터가 실시간으로 변경됩니다.", "세부 체류 자격 (Detailed Visa Code)", "직전학기 평점 / 출석률", "C학점(2.0) 이상 / 출석 90% 이상", "C학점 미만 / 출석 90% 미만", "한국어 능력 (TOPIK)", "기준 충족 (D-2-1/2: 3급, D-2-3/4: 4급)", "기준 미충족 (미소지 또는 기준 미달)", "신청 불가", "허가 가능", "성적/출석 미달로 취업 허가 불가", "D-2 비자(D-2-1~D-2-6)는 직전학기 GPA C학점(2.0) 이상, D-4-1은 출석률 90% 이상이어야 시간제 취업 허가를 신청할 수 있습니다.", "주중 최대 25시간 / 방학·주말 무제한 허용", "{x} TOPIK 3급 이상 조건 충족. 하이코리아에서 허가를 신청하세요.", "주중 및 방학 포함 주당 10시간 제한", "TOPIK 3급 미소지로 인해 방학 기간 중에도 근무 시간이 주 10시간으로 엄격히 제한됩니다.", "주중 최대 30시간 / 방학·주말 무제한 허용", "{x} 우수 체류 자격입니다. 주중 30시간 근무가 허용됩니다.", "주중 및 방학 포함 주당 15시간 제한", "TOPIK 4급 미소지로 인해 주당 근무 시간이 15시간으로 제한됩니다.", "D-2-6(교환학생) 자격입니다. 본교 수강신청 및 TOPIK 성적 조건 충족 시 허용됩니다.", "주중 및 주말 포함 최대 20시간 허용", "D-4-1(어학연수) 체류 6개월 및 출석률 90% 이상 조건을 충족하였습니다. (제조업/건설업 금지)"], "en": ["Reflects the Ministry of Justice's 2026 detailed D-2 residence statuses (D-2-1 to D-2-6) in real time", "Administrative Summary by Detailed Student Residence Status", "Select a detailed residence status in the checker and the <b>allowed working hours in the chart on the left are highlighted instantly</b>.", "📌 Detailed D-2 residence status categories (Enforcement Decree of the Immigration Act)", "Associate degree", "Bachelor's (4-year)", "Master's", "Ph.D.", "Exchange student", "Associate", "Bachelor's", "Master's", "Ph.D.", "Exchange", "Language training", "Foreigner registration deadline", "Within 90 days of entry", "Residence Card must be issued", "2026 health insurance (reduced rate)", "KRW 79,320/month", "Pay in advance by the 25th each month", "D-2-2 Bachelor's (TOPIK Level 3)", "25 hrs/week (term)", "Unlimited on vacations/weekends", "D-2-3/4 Graduate (TOPIK Level 4)", "30 hrs/week (term)", "Unlimited on vacations/weekends", "Part-time work hours allowed (linked to checker)", "The detailed status selected in the checker is highlighted in the chart in real time.", "Term-time hours allowed (hrs/week)", "Vacation/weekend hours allowed (hrs/week)", "Unlimited", "hrs", "Hours", "Selected: ", "Part-time Work Eligibility Checker by Residence Status", "Choose a residence status and the chart data changes in real time.", "Detailed residence status (visa code)", "Previous-semester GPA / attendance", "GPA C (2.0) or above / attendance 90% or above", "GPA below C / attendance below 90%", "Korean proficiency (TOPIK)", "Met (D-2-1/2: Level 3, D-2-3/4: Level 4)", "Not met (no TOPIK or below requirement)", "Not eligible", "Eligible", "Work permission not possible: GPA/attendance below requirement", "D-2 holders (D-2-1 to D-2-6) need a previous-semester GPA of C (2.0) or above, and D-4-1 holders need attendance of 90% or above, to apply for part-time work permission.", "Up to 25 hrs/week in term · unlimited on vacations/weekends", "{x}: TOPIK Level 3+ requirement met. Apply for permission via HiKorea.", "Limited to 10 hrs/week, including vacations", "Without TOPIK Level 3, working hours are strictly limited to 10 hrs/week even during vacations.", "Up to 30 hrs/week in term · unlimited on vacations/weekends", "{x}: excellent status. Up to 30 hrs/week in term is allowed.", "Limited to 15 hrs/week, including vacations", "Without TOPIK Level 4, weekly working hours are limited to 15.", "D-2-6 (Exchange student): allowed if you meet course registration and TOPIK criteria at this university.", "Up to 20 hrs/week, weekdays and weekends combined", "D-4-1 (Language training): the 6-month stay and 90% attendance requirements are met. (Manufacturing/construction prohibited)"], "zh": ["实时反映法务部2026年D-2细分居留资格（D-2-1~D-2-6）", "按居留资格细分的留学生行政综合摘要", "在检测器中选择细分居留资格后，<b>左侧图表中的允许工作时间会即时联动并高亮显示</b>。", "📌 D-2居留资格细分标准（出入境管理法施行令）", "专科学位课程", "本科学位课程（4年制）", "硕士课程", "博士课程", "交换生课程", "专科", "本科", "硕士", "博士", "交换生", "语言研修", "外国人登录期限", "入境后90天内", "必须办理Residence Card", "2026年健康保险费（减免后）", "每月79,320韩元", "每月25日前预缴", "D-2-2本科（TOPIK 3级）", "学期内每周25小时", "假期/周末不限", "D-2-3/4研究生（TOPIK 4级）", "学期内每周30小时", "假期/周末不限", "兼职允许时间（与检测器实时联动）", "在检测器中选择的细分签证类别会在图表中实时高亮。", "学期内允许时间（小时/周）", "假期/周末允许时间（小时/周）", "不限", "小时", "小时（Hours）", "已选择：", "按居留资格兼职资格检测器", "选择居留资格后，图表数据会实时变化。", "细分居留资格（签证代码）", "上学期成绩/出勤率", "C（2.0）以上/出勤率90%以上", "低于C/出勤率低于90%", "韩语能力（TOPIK）", "达标（D-2-1/2：3级，D-2-3/4：4级）", "未达标（无成绩或未达要求）", "不可申请", "可申请", "成绩/出勤率未达标，不可获批兼职", "D-2签证（D-2-1~D-2-6）须上学期GPA达到C（2.0）以上，D-4-1须出勤率达到90%以上，方可申请兼职许可。", "学期内最多每周25小时 / 假期·周末不限", "{x}：满足TOPIK 3级以上条件。请通过HiKorea申请许可。", "含假期每周限10小时", "因未持有TOPIK 3级，假期期间工作时间也严格限制为每周10小时。", "学期内最多每周30小时 / 假期·周末不限", "{x}：优秀居留资格，学期内允许每周工作30小时。", "含假期每周限15小时", "因未持有TOPIK 4级，每周工作时间限制为15小时。", "D-2-6（交换生）：满足本校选课及TOPIK成绩条件时允许。", "含周末每周最多20小时", "D-4-1（语言研修）：已满足居留6个月及出勤率90%以上的条件。（禁止制造业/建筑业）"], "vi": ["Cập nhật theo thời gian thực các tư cách lưu trú D-2 chi tiết 2026 của Bộ Tư pháp (D-2-1 ~ D-2-6)", "Tổng hợp hành chính theo tư cách lưu trú chi tiết của du học sinh", "Khi chọn tư cách lưu trú chi tiết trong công cụ kiểm tra, <b>số giờ làm việc cho phép trên biểu đồ bên trái sẽ được làm nổi bật ngay lập tức</b>.", "📌 Phân loại chi tiết tư cách lưu trú D-2 (Nghị định thi hành Luật Quản lý xuất nhập cảnh)", "Hệ cao đẳng", "Hệ đại học (4 năm)", "Thạc sĩ", "Tiến sĩ", "Sinh viên trao đổi", "Cao đẳng", "Đại học", "Thạc sĩ", "Tiến sĩ", "Trao đổi", "Học tiếng", "Hạn đăng ký người nước ngoài", "Trong 90 ngày sau nhập cảnh", "Bắt buộc cấp Residence Card", "Phí bảo hiểm y tế 2026 (đã giảm)", "79.320 won/tháng", "Nộp trước ngày 25 hằng tháng", "D-2-2 Đại học (TOPIK 3)", "25 giờ/tuần (trong kỳ)", "Không giới hạn kỳ nghỉ/cuối tuần", "D-2-3/4 Sau đại học (TOPIK 4)", "30 giờ/tuần (trong kỳ)", "Không giới hạn kỳ nghỉ/cuối tuần", "Số giờ làm thêm được phép (liên động với công cụ kiểm tra)", "Tư cách lưu trú chi tiết bạn chọn trong công cụ kiểm tra được làm nổi bật trên biểu đồ theo thời gian thực.", "Giờ cho phép trong kỳ (giờ/tuần)", "Giờ cho phép kỳ nghỉ/cuối tuần (giờ/tuần)", "Không giới hạn", "giờ", "Giờ (Hours)", "Đã chọn: ", "Công cụ kiểm tra điều kiện làm thêm theo tư cách lưu trú", "Chọn tư cách lưu trú, dữ liệu biểu đồ sẽ thay đổi theo thời gian thực.", "Tư cách lưu trú chi tiết (mã visa)", "Điểm/chuyên cần học kỳ trước", "GPA từ C (2.0) trở lên / chuyên cần từ 90% trở lên", "GPA dưới C / chuyên cần dưới 90%", "Năng lực tiếng Hàn (TOPIK)", "Đạt (D-2-1/2: cấp 3, D-2-3/4: cấp 4)", "Chưa đạt (không có chứng chỉ hoặc dưới chuẩn)", "Không thể đăng ký", "Có thể được phép", "Không được phép làm thêm do chưa đạt điểm/chuyên cần", "Visa D-2 (D-2-1~D-2-6) cần GPA học kỳ trước từ C (2.0) trở lên, và D-4-1 cần chuyên cần từ 90% trở lên mới được đăng ký xin phép làm thêm.", "Tối đa 25 giờ/tuần trong kỳ · không giới hạn kỳ nghỉ/cuối tuần", "{x}: đáp ứng điều kiện TOPIK cấp 3 trở lên. Hãy xin phép qua HiKorea.", "Giới hạn 10 giờ/tuần, kể cả kỳ nghỉ", "Do chưa có TOPIK cấp 3, giờ làm việc bị giới hạn nghiêm ngặt ở 10 giờ/tuần kể cả trong kỳ nghỉ.", "Tối đa 30 giờ/tuần trong kỳ · không giới hạn kỳ nghỉ/cuối tuần", "{x}: tư cách lưu trú ưu tú. Được làm tối đa 30 giờ/tuần trong kỳ.", "Giới hạn 15 giờ/tuần, kể cả kỳ nghỉ", "Do chưa có TOPIK cấp 4, giờ làm việc mỗi tuần bị giới hạn ở 15 giờ.", "D-2-6 (Sinh viên trao đổi): được phép nếu đáp ứng điều kiện đăng ký học phần và TOPIK của trường.", "Tối đa 20 giờ/tuần, gồm cả cuối tuần", "D-4-1 (Học tiếng): đã đáp ứng điều kiện lưu trú 6 tháng và chuyên cần từ 90%. (Cấm ngành sản xuất/xây dựng)"], "uz": ["Adliya vazirligining 2026-yilgi D-2 yashash maqomi kichik turlari (D-2-1 ~ D-2-6) real vaqtda aks ettirilgan", "Talabalarning yashash maqomi turlari bo'yicha ma'muriy qisqacha ma'lumot", "Tekshirgichda yashash maqomini tanlasangiz, <b>chap tomondagi grafikda ruxsat etilgan ish soatlari darhol ajratib ko'rsatiladi</b>.", "📌 D-2 yashash maqomining kichik turlari (Immigratsiya qonuni ijro tartibi)", "Kichik mutaxassis kursi", "Bakalavr kursi (4 yillik)", "Magistratura kursi", "Doktorantura kursi", "Almashinuv talabasi kursi", "Kichik mut.", "Bakalavr", "Magistr", "Doktor", "Almashinuv", "Til kursi", "Chet ellik sifatida ro'yxatdan o'tish muddati", "Kirgandan keyin 90 kun ichida", "Residence Card olish majburiy", "2026-yil tibbiy sug'urta badali (imtiyozli)", "Oyiga 79 320 von", "Har oyning 25-sanasigacha oldindan to'lanadi", "D-2-2 Bakalavr (TOPIK 3-daraja)", "Haftasiga 25 soat (o'quv davri)", "Ta'til/dam olish kunlari cheklanmagan", "D-2-3/4 Magistratura (TOPIK 4-daraja)", "Haftasiga 30 soat (o'quv davri)", "Ta'til/dam olish kunlari cheklanmagan", "Soatbay ishga ruxsat etilgan soatlar (tekshirgich bilan bog'langan)", "Tekshirgichda tanlangan yashash maqomi grafikda real vaqtda ajratib ko'rsatiladi.", "O'quv davrida ruxsat etilgan soat (soat/hafta)", "Ta'til/dam olish kunlari ruxsat etilgan soat (soat/hafta)", "Cheklanmagan", "soat", "Soat (Hours)", "Tanlandi: ", "Yashash maqomi bo'yicha qo'shimcha ish huquqini tekshirgich", "Yashash maqomini tanlang, grafik ma'lumotlari real vaqtda o'zgaradi.", "Yashash maqomi turi (viza kodi)", "Oldingi semestr bahosi / davomat", "C (2.0) yoki yuqori / davomat 90% va undan yuqori", "C dan past / davomat 90% dan past", "Koreys tili darajasi (TOPIK)", "Talab bajarilgan (D-2-1/2: 3-daraja, D-2-3/4: 4-daraja)", "Talab bajarilmagan (sertifikat yo'q yoki past)", "Ariza berib bo'lmaydi", "Ruxsat berilishi mumkin", "Baho/davomat yetarli emas, ish ruxsati berilmaydi", "D-2 vizasi (D-2-1~D-2-6) uchun oldingi semestr GPA kamida C (2.0), D-4-1 uchun davomat kamida 90% bo'lsa, soatbay ishga ruxsat so'rash mumkin.", "O'quv davrida haftasiga 25 soatgacha · ta'til/dam olish kunlari cheklanmagan", "{x}: TOPIK 3-daraja va undan yuqori sharti bajarilgan. HiKorea orqali ruxsat so'rang.", "Ta'til davrida ham haftasiga 10 soat bilan cheklangan", "TOPIK 3-daraja bo'lmagani uchun ta'til davrida ham ish vaqti haftasiga 10 soat bilan qat'iy cheklanadi.", "O'quv davrida haftasiga 30 soatgacha · ta'til/dam olish kunlari cheklanmagan", "{x}: a'lo yashash maqomi. O'quv davrida haftasiga 30 soat ishlashga ruxsat.", "Ta'til davrida ham haftasiga 15 soat bilan cheklangan", "TOPIK 4-daraja bo'lmagani uchun haftalik ish vaqti 15 soat bilan cheklanadi.", "D-2-6 (Almashinuv talabasi): universitetdagi fanlarga yozilish va TOPIK shartlari bajarilsa ruxsat beriladi.", "Dam olish kunlari bilan haftasiga 20 soatgacha", "D-4-1 (Til kursi): 6 oylik yashash va 90% davomat sharti bajarilgan. (Ishlab chiqarish/qurilish taqiqlangan)"], "mn": ["Хууль зүйн яамны 2026 оны D-2 оршин суух эрхийн дэд ангилал (D-2-1 ~ D-2-6) бодит цагт тусгагдсан", "Оюутны оршин суух эрхийн дэд ангиллаар захиргааны нэгдсэн тойм", "Шалгагчаас оршин суух эрхээ сонгоход <b>зүүн талын графикт зөвшөөрөгдсөн ажлын цаг шууд тодрон харагдана</b>.", "📌 D-2 оршин суух эрхийн дэд ангилал (Цагаачлалын хуулийн хэрэгжүүлэх журам)", "Мэргэжлийн диплом", "Бакалаврын хөтөлбөр (4 жил)", "Магистрын хөтөлбөр", "Докторын хөтөлбөр", "Солилцооны оюутан", "Диплом", "Бакалавр", "Магистр", "Доктор", "Солилцоо", "Хэлний бэлтгэл", "Гадаадын иргэний бүртгэлийн хугацаа", "Орсноос хойш 90 хоногийн дотор", "Residence Card заавал авна", "2026 оны эрүүл мэндийн даатгалын хураамж (хөнгөлөлттэй)", "Сарын 79,320 вон", "Сар бүрийн 25-ны дотор урьдчилан төлнө", "D-2-2 Бакалавр (TOPIK 3-р түвшин)", "Долоо хоногт 25 цаг (улирал)", "Амралт/амралтын өдөр хязгааргүй", "D-2-3/4 Магистр, доктор (TOPIK 4-р түвшин)", "Долоо хоногт 30 цаг (улирал)", "Амралт/амралтын өдөр хязгааргүй", "Цагийн ажлын зөвшөөрөгдсөн цаг (шалгагчтай холбогдсон)", "Шалгагчаас сонгосон оршин суух эрх графикт бодит цагт тодорно.", "Улирлын үеийн зөвшөөрөгдсөн цаг (цаг/долоо хоног)", "Амралт/амралтын өдрийн зөвшөөрөгдсөн цаг (цаг/долоо хоног)", "Хязгааргүй", "цаг", "Цаг (Hours)", "Сонгосон: ", "Оршин суух эрхээр цагийн ажлын эрх шалгагч", "Оршин суух эрхээ сонговол графикийн мэдээлэл бодит цагт өөрчлөгдөнө.", "Оршин суух эрх (визний код)", "Өмнөх улирлын дүн / ирц", "C (2.0) ба түүнээс дээш / ирц 90%-аас дээш", "C-ээс доош / ирц 90%-аас доош", "Солонгос хэлний чадвар (TOPIK)", "Хангасан (D-2-1/2: 3-р түвшин, D-2-3/4: 4-р түвшин)", "Хангаагүй (гэрчилгээгүй эсвэл хүрэхгүй)", "Өргөдөл гаргах боломжгүй", "Зөвшөөрөгдөх боломжтой", "Дүн/ирц дутсан тул ажлын зөвшөөрөл олгохгүй", "D-2 виз (D-2-1~D-2-6)-тэй бол өмнөх улирлын GPA C (2.0)-аас дээш, D-4-1 бол ирц 90%-аас дээш байж цагийн ажлын зөвшөөрөл хүсэх боломжтой.", "Улиралд долоо хоногт 25 цаг хүртэл · амралтаар хязгааргүй", "{x}: TOPIK 3-р түвшний шаардлагыг хангасан. HiKorea-аар зөвшөөрөл хүсээрэй.", "Амралтыг оруулаад долоо хоногт 10 цагаар хязгаарлагдана", "TOPIK 3-р түвшингүй тул амралтын үед ч ажлын цаг долоо хоногт 10 цагаар хатуу хязгаарлагдана.", "Улиралд долоо хоногт 30 цаг хүртэл · амралтаар хязгааргүй", "{x}: онц оршин суух эрх. Улиралд долоо хоногт 30 цаг ажиллахыг зөвшөөрнө.", "Амралтыг оруулаад долоо хоногт 15 цагаар хязгаарлагдана", "TOPIK 4-р түвшингүй тул долоо хоногийн ажлын цаг 15 цагаар хязгаарлагдана.", "D-2-6 (Солилцооны оюутан): манай сургуулийн хичээл сонголт болон TOPIK-ийн нөхцөлийг хангавал зөвшөөрнө.", "Амралтын өдрийг оруулаад долоо хоногт 20 цаг хүртэл", "D-4-1 (Хэлний бэлтгэл): 6 сар оршин суусан, ирц 90%-аас дээш нөхцөлийг хангасан. (Үйлдвэр/барилга хориотой)"], "ja": ["法務部2026年度 D-2詳細在留資格（D-2-1〜D-2-6）をリアルタイム反映", "外国人留学生 詳細在留資格別 行政総合まとめ", "診断ツールで詳細在留資格を選ぶと、<b>左のグラフの許可就労時間がすぐに連動して強調表示</b>されます。", "📌 D-2在留資格の詳細区分基準（出入国管理法施行令）", "専門学士課程", "学士課程（4年制）", "修士課程", "博士課程", "交換留学課程", "専門学士", "学士", "修士", "博士", "交換留学", "語学研修", "外国人登録の期限", "入国後90日以内", "Residence Cardの発給が必須", "2026年 健康保険料（軽減適用）", "月額79,320ウォン", "毎月25日までに事前納付", "D-2-2 学部（TOPIK 3級）", "学期中 週25時間", "長期休暇・週末は無制限", "D-2-3/4 大学院（TOPIK 4級）", "学期中 週30時間", "長期休暇・週末は無制限", "アルバイト許可時間（診断ツールと連動）", "診断ツールで選んだ詳細在留資格がグラフでリアルタイムに強調されます。", "学期中の許可時間（時間/週）", "長期休暇・週末の許可時間（時間/週）", "無制限", "時間", "時間（Hours）", "選択：", "詳細在留資格別 アルバイト資格診断ツール", "在留資格を選ぶと、グラフのデータがリアルタイムで変わります。", "詳細在留資格（ビザコード）", "前学期の成績／出席率", "C（2.0）以上／出席率90%以上", "C未満／出席率90%未満", "韓国語能力（TOPIK）", "基準を満たす（D-2-1/2：3級、D-2-3/4：4級）", "基準未達（未取得または基準に満たない）", "申請不可", "許可可能", "成績・出席率の不足により就労許可不可", "D-2ビザ（D-2-1〜D-2-6）は前学期のGPAがC（2.0）以上、D-4-1は出席率90%以上でなければ、アルバイト許可を申請できません。", "学期中は週最大25時間／長期休暇・週末は無制限", "{x}：TOPIK 3級以上の条件を満たしています。HiKoreaで許可を申請してください。", "長期休暇を含め週10時間に制限", "TOPIK 3級未取得のため、長期休暇中も就労時間は週10時間に厳しく制限されます。", "学期中は週最大30時間／長期休暇・週末は無制限", "{x}：優良な在留資格です。学期中は週30時間の就労が許可されます。", "長期休暇を含め週15時間に制限", "TOPIK 4級未取得のため、週の就労時間は15時間に制限されます。", "D-2-6（交換留学）：本学の履修登録およびTOPIK成績の条件を満たせば許可されます。", "週末を含め最大20時間まで許可", "D-4-1（語学研修）：在留6か月および出席率90%以上の条件を満たしています。（製造業・建設業は禁止）"], "ru": ["Актуальные подкатегории статуса пребывания D-2 (D-2-1 ~ D-2-6) Минюста на 2026 год — в реальном времени", "Административная сводка по подкатегориям статуса пребывания студентов", "Выберите подробный статус пребывания в калькуляторе — <b>допустимые рабочие часы на графике слева сразу подсветятся</b>.", "📌 Подкатегории статуса пребывания D-2 (Указ о применении Закона об иммиграционном контроле)", "Колледж (младший специалист)", "Бакалавриат (4 года)", "Магистратура", "Докторантура", "Студент по обмену", "Колледж", "Бакалавр", "Магистр", "Доктор", "Обмен", "Языковые курсы", "Срок регистрации иностранца", "В течение 90 дней после въезда", "Обязательна выдача Residence Card", "Страховой взнос 2026 (со скидкой)", "79 320 вон/мес.", "Оплата заранее до 25-го числа", "D-2-2 Бакалавриат (TOPIK 3 уровня)", "25 ч/нед. (в семестре)", "Каникулы/выходные без ограничений", "D-2-3/4 Магистратура и докторантура (TOPIK 4 уровня)", "30 ч/нед. (в семестре)", "Каникулы/выходные без ограничений", "Допустимые часы подработки (связано с калькулятором)", "Статус, выбранный в калькуляторе, подсвечивается на графике в реальном времени.", "Допустимые часы в семестре (ч/нед.)", "Допустимые часы на каникулах/выходных (ч/нед.)", "Без ограничений", "ч", "Часы (Hours)", "Выбрано: ", "Калькулятор права на подработку по статусу пребывания", "Выберите статус пребывания — данные графика изменятся в реальном времени.", "Подробный статус пребывания (код визы)", "Средний балл / посещаемость за прошлый семестр", "GPA не ниже C (2.0) / посещаемость не ниже 90%", "GPA ниже C / посещаемость ниже 90%", "Знание корейского (TOPIK)", "Соответствует (D-2-1/2: 3 уровень, D-2-3/4: 4 уровень)", "Не соответствует (нет сертификата или ниже требуемого)", "Подача невозможна", "Разрешение возможно", "Разрешение на работу невозможно: не хватает баллов/посещаемости", "Для подачи заявки на подработку владельцам визы D-2 (D-2-1~D-2-6) нужен GPA за прошлый семестр не ниже C (2.0), а владельцам D-4-1 — посещаемость не ниже 90%.", "До 25 ч/нед. в семестре · на каникулах/выходных без ограничений", "{x}: условие TOPIK 3 уровня и выше выполнено. Подайте заявку на разрешение через HiKorea.", "Не более 10 ч/нед., включая каникулы", "Без TOPIK 3 уровня рабочие часы строго ограничены 10 ч/нед. даже на каникулах.", "До 30 ч/нед. в семестре · на каникулах/выходных без ограничений", "{x}: отличный статус пребывания. В семестре разрешено до 30 ч/нед.", "Не более 15 ч/нед., включая каникулы", "Без TOPIK 4 уровня рабочие часы ограничены 15 ч/нед.", "D-2-6 (студент по обмену): разрешено при выполнении условий по записи на курсы и TOPIK в нашем университете.", "До 20 ч/нед., включая выходные", "D-4-1 (языковые курсы): выполнены условия — 6 месяцев пребывания и посещаемость от 90%. (Производство/строительство запрещены)"], "id": ["Mencerminkan sub-status tinggal D-2 Kementerian Kehakiman 2026 (D-2-1 ~ D-2-6) secara real time", "Ringkasan Administrasi menurut Sub-status Tinggal Mahasiswa Internasional", "Pilih sub-status tinggal di alat pemeriksa, maka <b>jam kerja yang diizinkan pada grafik di sebelah kiri langsung disorot</b>.", "📌 Klasifikasi sub-status tinggal D-2 (Peraturan Pelaksana UU Imigrasi)", "Program diploma", "Program sarjana (4 tahun)", "Program magister", "Program doktor", "Mahasiswa pertukaran", "Diploma", "Sarjana", "Magister", "Doktor", "Pertukaran", "Kursus bahasa", "Batas registrasi orang asing", "Dalam 90 hari setelah masuk", "Penerbitan Residence Card wajib", "Premi asuransi kesehatan 2026 (keringanan)", "79.320 won/bulan", "Dibayar di muka paling lambat tanggal 25", "D-2-2 Sarjana (TOPIK level 3)", "25 jam/minggu (masa kuliah)", "Libur/akhir pekan tanpa batas", "D-2-3/4 Pascasarjana (TOPIK level 4)", "30 jam/minggu (masa kuliah)", "Libur/akhir pekan tanpa batas", "Jam kerja paruh waktu yang diizinkan (terhubung dengan pemeriksa)", "Sub-status tinggal yang dipilih di pemeriksa disorot pada grafik secara real time.", "Jam diizinkan masa kuliah (jam/minggu)", "Jam diizinkan libur/akhir pekan (jam/minggu)", "Tanpa batas", "jam", "Jam (Hours)", "Dipilih: ", "Pemeriksa Kelayakan Kerja Paruh Waktu menurut Status Tinggal", "Pilih status tinggal, data grafik berubah secara real time.", "Sub-status tinggal (kode visa)", "IPK / kehadiran semester lalu", "IPK C (2,0) ke atas / kehadiran 90% ke atas", "IPK di bawah C / kehadiran di bawah 90%", "Kemampuan bahasa Korea (TOPIK)", "Memenuhi (D-2-1/2: level 3, D-2-3/4: level 4)", "Belum memenuhi (tidak punya atau di bawah syarat)", "Tidak dapat mengajukan", "Dapat diizinkan", "Izin kerja tidak dapat diberikan karena nilai/kehadiran kurang", "Pemegang visa D-2 (D-2-1~D-2-6) harus memiliki IPK semester lalu C (2,0) ke atas, dan D-4-1 harus berkehadiran 90% ke atas untuk mengajukan izin kerja paruh waktu.", "Maks. 25 jam/minggu masa kuliah · libur/akhir pekan tanpa batas", "{x}: syarat TOPIK level 3 ke atas terpenuhi. Ajukan izin melalui HiKorea.", "Dibatasi 10 jam/minggu, termasuk masa libur", "Tanpa TOPIK level 3, jam kerja dibatasi ketat 10 jam/minggu, bahkan saat libur.", "Maks. 30 jam/minggu masa kuliah · libur/akhir pekan tanpa batas", "{x}: status tinggal unggul. Bekerja hingga 30 jam/minggu pada masa kuliah diizinkan.", "Dibatasi 15 jam/minggu, termasuk masa libur", "Tanpa TOPIK level 4, jam kerja mingguan dibatasi 15 jam.", "D-2-6 (Mahasiswa pertukaran): diizinkan jika memenuhi syarat pengisian rencana studi dan TOPIK di universitas ini.", "Maks. 20 jam/minggu, termasuk akhir pekan", "D-4-1 (Kursus bahasa): syarat tinggal 6 bulan dan kehadiran 90% ke atas terpenuhi. (Dilarang di manufaktur/konstruksi)"], "th": ["สะท้อนสถานะพำนัก D-2 ย่อยปี 2026 ของกระทรวงยุติธรรม (D-2-1 ~ D-2-6) แบบเรียลไทม์", "สรุปงานธุรการตามสถานะพำนักย่อยของนักศึกษาต่างชาติ", "เมื่อเลือกสถานะพำนักย่อยในเครื่องมือตรวจสอบ <b>ชั่วโมงทำงานที่อนุญาตในกราฟด้านซ้ายจะถูกไฮไลต์ทันที</b>", "📌 เกณฑ์แบ่งสถานะพำนัก D-2 ย่อย (กฎกระทรวงว่าด้วยกฎหมายตรวจคนเข้าเมือง)", "หลักสูตรอนุปริญญา", "หลักสูตรปริญญาตรี (4 ปี)", "หลักสูตรปริญญาโท", "หลักสูตรปริญญาเอก", "นักศึกษาแลกเปลี่ยน", "อนุปริญญา", "ป.ตรี", "ป.โท", "ป.เอก", "แลกเปลี่ยน", "เรียนภาษา", "กำหนดลงทะเบียนคนต่างด้าว", "ภายใน 90 วันหลังเข้าประเทศ", "ต้องขอ Residence Card", "ค่าประกันสุขภาพปี 2026 (อัตราลดหย่อน)", "79,320 วอน/เดือน", "ชำระล่วงหน้าภายในวันที่ 25 ของทุกเดือน", "D-2-2 ปริญญาตรี (TOPIK ระดับ 3)", "25 ชม./สัปดาห์ (ช่วงเรียน)", "ช่วงปิดเทอม/วันหยุดไม่จำกัด", "D-2-3/4 บัณฑิตศึกษา (TOPIK ระดับ 4)", "30 ชม./สัปดาห์ (ช่วงเรียน)", "ช่วงปิดเทอม/วันหยุดไม่จำกัด", "ชั่วโมงทำงานพิเศษที่อนุญาต (เชื่อมกับเครื่องมือตรวจสอบ)", "สถานะพำนักย่อยที่เลือกในเครื่องมือตรวจสอบจะถูกไฮไลต์ในกราฟแบบเรียลไทม์", "ชั่วโมงที่อนุญาตช่วงเรียน (ชม./สัปดาห์)", "ชั่วโมงที่อนุญาตช่วงปิดเทอม/วันหยุด (ชม./สัปดาห์)", "ไม่จำกัด", "ชม.", "ชั่วโมง (Hours)", "เลือกแล้ว: ", "เครื่องมือตรวจสอบสิทธิ์ทำงานพิเศษตามสถานะพำนัก", "เลือกสถานะพำนัก ข้อมูลในกราฟจะเปลี่ยนแบบเรียลไทม์", "สถานะพำนักย่อย (รหัสวีซ่า)", "เกรดเฉลี่ย / การเข้าเรียนภาคเรียนที่แล้ว", "เกรด C (2.0) ขึ้นไป / เข้าเรียน 90% ขึ้นไป", "ต่ำกว่า C / เข้าเรียนต่ำกว่า 90%", "ความสามารถภาษาเกาหลี (TOPIK)", "ผ่านเกณฑ์ (D-2-1/2: ระดับ 3, D-2-3/4: ระดับ 4)", "ไม่ผ่านเกณฑ์ (ไม่มีผลสอบหรือต่ำกว่าเกณฑ์)", "ไม่สามารถยื่นได้", "อนุญาตได้", "ไม่สามารถอนุญาตให้ทำงานเนื่องจากเกรด/การเข้าเรียนไม่ถึงเกณฑ์", "ผู้ถือวีซ่า D-2 (D-2-1~D-2-6) ต้องมีเกรดเฉลี่ยภาคเรียนที่แล้ว C (2.0) ขึ้นไป และผู้ถือ D-4-1 ต้องเข้าเรียน 90% ขึ้นไป จึงจะยื่นขออนุญาตทำงานพิเศษได้", "สูงสุด 25 ชม./สัปดาห์ในช่วงเรียน · ปิดเทอม/วันหยุดไม่จำกัด", "{x}: ผ่านเกณฑ์ TOPIK ระดับ 3 ขึ้นไป โปรดยื่นขออนุญาตผ่าน HiKorea", "จำกัด 10 ชม./สัปดาห์ รวมช่วงปิดเทอม", "เนื่องจากไม่มี TOPIK ระดับ 3 ชั่วโมงทำงานจึงถูกจำกัดที่ 10 ชม./สัปดาห์อย่างเคร่งครัด แม้ในช่วงปิดเทอม", "สูงสุด 30 ชม./สัปดาห์ในช่วงเรียน · ปิดเทอม/วันหยุดไม่จำกัด", "{x}: สถานะพำนักยอดเยี่ยม อนุญาตให้ทำงานได้ 30 ชม./สัปดาห์ในช่วงเรียน", "จำกัด 15 ชม./สัปดาห์ รวมช่วงปิดเทอม", "เนื่องจากไม่มี TOPIK ระดับ 4 ชั่วโมงทำงานต่อสัปดาห์จึงจำกัดที่ 15 ชม.", "D-2-6 (นักศึกษาแลกเปลี่ยน): อนุญาตเมื่อเป็นไปตามเงื่อนไขการลงทะเบียนเรียนและผล TOPIK ของมหาวิทยาลัย", "สูงสุด 20 ชม./สัปดาห์ รวมวันหยุด", "D-4-1 (เรียนภาษา): ผ่านเงื่อนไขพำนักครบ 6 เดือนและเข้าเรียน 90% ขึ้นไป (ห้ามงานโรงงาน/ก่อสร้าง)"]};
+        const dashLangNames = { ko: "한국어", en: "English", zh: "中文", vi: "Tiếng Việt", uz: "O'zbek", mn: "Монгол", ja: "日本語", ru: "Русский", id: "Bahasa", th: "ไทย" };
+        const dashCodes = ['D-2-1', 'D-2-2', 'D-2-3', 'D-2-4', 'D-2-6', 'D-4-1'];
+        const dashShortKeys = ['v21', 'v22', 'v23', 'v24', 'v26', 'v41'];
+        const dashLongKeys = ['r21', 'r22', 'r23', 'r24', 'r26', 'v41'];
+        const dashVisaVals = ['D2_1', 'D2_2', 'D2_3', 'D2_4', 'D2_6', 'D4_1'];
+        let dashLang = 'ko';
+        const dt = key => dashI18n[dashLang][dashKeys.indexOf(key)];
+
+        function renderDashLangTabs() {
+            document.getElementById('dash-lang-selector').innerHTML = Object.keys(dashLangNames).map(k => `
+                <button onclick="applyDashLang('${k}')" id="dash-lang-btn-${k}" class="px-3 py-1.5 rounded-md border"></button>`).join('');
+            Object.keys(dashLangNames).forEach(k => { document.getElementById(`dash-lang-btn-${k}`).innerText = dashLangNames[k]; });
+        }
+
+        function applyDashLang(lang) {
+            if (lang) dashLang = lang;
+            Object.keys(dashLangNames).forEach(k => {
+                const btn = document.getElementById(`dash-lang-btn-${k}`);
+                if (btn) btn.className = (k === dashLang)
+                    ? "px-3 py-1.5 rounded-md border border-blue-600 bg-blue-600 text-white"
+                    : "px-3 py-1.5 rounded-md border border-slate-200 bg-white text-slate-700 hover:bg-slate-100";
+            });
+            const sec = document.getElementById('sec-dashboard');
+            sec.setAttribute('lang', dashLang === 'zh' ? 'zh-Hans' : dashLang);
+            sec.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = dt(el.getAttribute('data-i18n')); });
+            // visa select options: code + localized name
+            const sel = document.getElementById('calc-visa');
+            const cur = sel.value;
+            sel.innerHTML = dashVisaVals.map((v, i) => `<option value="${v}">${dashCodes[i]} ${dt(dashLongKeys[i])}</option>`).join('');
+            sel.value = cur || 'D2_2';
+            runSimulation();
+        }
+
         // Initialize Chart.js with Dynamic Update Capability
         function initWorkHoursChart() {
             const ctx = document.getElementById('workHoursChart').getContext('2d');
             workChartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [
-                        'D-2-1 전문학사', 
-                        'D-2-2 학사', 
-                        'D-2-3 석사', 
-                        'D-2-4 박사', 
-                        'D-2-6 교환학생', 
-                        'D-4-1 어학연수'
-                    ],
+                    labels: dashCodes.map((c, i) => `${c} ${dt(dashShortKeys[i])}`),
                     datasets: [
-                        {
-                            label: '주중 허용 시간 (시간/주)',
-                            data: [25, 25, 30, 30, 25, 20],
-                            backgroundColor: ['#e2e8f0', '#2563eb', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0'],
-                            borderRadius: 6
-                        },
-                        {
-                            label: '방학/주말 허용 시간 (시간/주)',
-                            data: [40, 40, 40, 40, 40, 20], // 40 represents unlimited for degree students
-                            backgroundColor: ['#cbd5e1', '#10b981', '#cbd5e1', '#cbd5e1', '#cbd5e1', '#cbd5e1'],
-                            borderRadius: 6
-                        }
+                        { label: dt('ch_wk'), data: [25, 25, 30, 30, 25, 20], backgroundColor: ['#e2e8f0', '#2563eb', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0'], borderRadius: 6 },
+                        { label: dt('ch_vac'), data: [40, 40, 40, 40, 40, 20], backgroundColor: ['#cbd5e1', '#10b981', '#cbd5e1', '#cbd5e1', '#cbd5e1', '#cbd5e1'], borderRadius: 6 } // 40 represents unlimited for degree students
                     ]
                 },
                 options: {
@@ -857,27 +877,19 @@
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    let val = context.raw;
+                                    const label = context.dataset.label || '';
+                                    const val = context.raw;
                                     if (val === 40 && context.datasetIndex === 1 && context.dataIndex !== 5) {
-                                        return label + ': 무제한 (Unlimited)';
+                                        return label + ': ' + dt('ch_unl');
                                     }
-                                    return label + ': ' + val + '시간';
+                                    return label + ': ' + val + ' ' + dt('ch_hours');
                                 }
                             }
                         }
                     },
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 45,
-                            title: { display: true, text: '시간 (Hours)', font: { size: 11 } }
-                        },
-                        x: {
-                            ticks: {
-                                font: { size: 10 }
-                            }
-                        }
+                        y: { beginAtZero: true, max: 45, title: { display: true, text: dt('ch_axis'), font: { size: 11 } } },
+                        x: { ticks: { font: { size: 10 } } }
                     }
                 }
             });
@@ -886,22 +898,10 @@
         // Dynamically Update Chart based on Simulator Inputs
         function updateChartHighlight(visaCode, topikStatus) {
             if (!workChartInstance) return;
+            const targetIdx = dashVisaVals.indexOf(visaCode) >= 0 ? dashVisaVals.indexOf(visaCode) : 1;
 
-            const visaMap = {
-                'D2_1': 0,
-                'D2_2': 1,
-                'D2_3': 2,
-                'D2_4': 3,
-                'D2_6': 4,
-                'D4_1': 5
-            };
-
-            const targetIdx = visaMap[visaCode] !== undefined ? visaMap[visaCode] : 1;
-
-            // Updated base work hours according to TOPIK criteria
             let weekdayHours = [25, 25, 30, 30, 25, 20];
             let vacationHours = [40, 40, 40, 40, 40, 20];
-
             if (topikStatus === 'LOW') {
                 if (targetIdx === 0 || targetIdx === 1) weekdayHours[targetIdx] = 10;
                 else if (targetIdx === 2 || targetIdx === 3) weekdayHours[targetIdx] = 15;
@@ -909,20 +909,23 @@
 
             const bgWeekday = ['#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0'];
             const bgVacation = ['#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0'];
+            bgWeekday[targetIdx] = '#2563eb';
+            bgVacation[targetIdx] = '#10b981';
 
-            bgWeekday[targetIdx] = '#2563eb';  // Highlighting selected item in Active Blue
-            bgVacation[targetIdx] = '#10b981'; // Highlighting selected item in Active Green
-
+            const labels = dashCodes.map((c, i) => `${c} ${dt(dashShortKeys[i])}`);
+            workChartInstance.data.labels = labels;
+            workChartInstance.data.datasets[0].label = dt('ch_wk');
+            workChartInstance.data.datasets[1].label = dt('ch_vac');
             workChartInstance.data.datasets[0].data = weekdayHours;
             workChartInstance.data.datasets[0].backgroundColor = bgWeekday;
             workChartInstance.data.datasets[1].backgroundColor = bgVacation;
+            workChartInstance.options.scales.y.title.text = dt('ch_axis');
             workChartInstance.update();
 
-            const labels = ['D-2-1 전문학사', 'D-2-2 학사', 'D-2-3 석사', 'D-2-4 박사', 'D-2-6 교환학생', 'D-4-1 어학연수'];
-            document.getElementById('chart-focus-badge').innerText = `선택: ${labels[targetIdx]}`;
+            document.getElementById('chart-focus-badge').innerText = dt('ch_sel') + labels[targetIdx];
         }
 
-        // Detailed Simulator handling D-2-1 to D-2-6 with dynamic chart link
+        // Simulator (D-2-1 to D-2-6, D-4-1) with dynamic chart link, localized
         function runSimulation() {
             const visa = document.getElementById('calc-visa').value;
             const gpa = document.getElementById('calc-gpa').value;
@@ -931,43 +934,32 @@
             const badge = document.getElementById('sim-badge');
             const title = document.getElementById('sim-title');
             const desc = document.getElementById('sim-desc');
+            const idx = dashVisaVals.indexOf(visa);
+            const x = `${dashCodes[idx]}(${dt(dashShortKeys[idx])})`;
 
-            // Trigger Chart Synchronization
             updateChartHighlight(visa, topik);
 
             if (gpa === 'FAIL') {
                 badge.className = "px-2 py-0.5 bg-red-600 text-white rounded text-xs";
-                badge.innerText = "신청 불가";
-                title.innerText = "성적/출석 미달로 취업 허가 불가";
-                desc.innerText = "D-2 비자(D-2-1~D-2-6)는 직전학기 GPA C학점(2.0) 이상, D-4-1은 출석률 90% 이상이어야 시간제 취업 허가를 신청할 수 있습니다.";
+                badge.innerText = dt('b_fail');
+                title.innerText = dt('t_fail');
+                desc.innerText = dt('d_fail');
                 return;
             }
 
             badge.className = "px-2 py-0.5 bg-emerald-600 text-white rounded text-xs";
-            badge.innerText = "허가 가능";
-            
+            badge.innerText = dt('b_ok');
+
             if (visa === 'D2_1' || visa === 'D2_2') {
-                if (topik === 'HIGH') {
-                    title.innerText = "주중 최대 25시간 / 방학·주말 무제한 허용";
-                    desc.innerText = visa === 'D2_1' ? "D-2-1(전문학사) TOPIK 3급 이상 조건 충족. 하이코리아에서 허가를 신청하세요." : "D-2-2(학사) TOPIK 3급 이상 조건 충족. 하이코리아에서 허가를 신청하세요.";
-                } else {
-                    title.innerText = "주중 및 방학 포함 주당 10시간 제한";
-                    desc.innerText = "TOPIK 3급 미소지로 인해 방학 기간 중에도 근무 시간이 주 10시간으로 엄격히 제한됩니다.";
-                }
+                if (topik === 'HIGH') { title.innerText = dt('t25'); desc.innerText = dt('d_hi12').replace('{x}', x); }
+                else { title.innerText = dt('t10'); desc.innerText = dt('d10'); }
             } else if (visa === 'D2_3' || visa === 'D2_4') {
-                if (topik === 'HIGH') {
-                    title.innerText = "주중 최대 30시간 / 방학·주말 무제한 허용";
-                    desc.innerText = visa === 'D2_3' ? "D-2-3(석사) 우수 체류 자격입니다. 주중 30시간 근무가 허용됩니다." : "D-2-4(박사) 우수 체류 자격입니다. 주중 30시간 근무가 허용됩니다.";
-                } else {
-                    title.innerText = "주중 및 방학 포함 주당 15시간 제한";
-                    desc.innerText = "TOPIK 4급 미소지로 인해 주당 근무 시간이 15시간으로 제한됩니다.";
-                }
+                if (topik === 'HIGH') { title.innerText = dt('t30'); desc.innerText = dt('d30').replace('{x}', x); }
+                else { title.innerText = dt('t15'); desc.innerText = dt('d15'); }
             } else if (visa === 'D2_6') {
-                title.innerText = "주중 최대 25시간 / 방학·주말 무제한 허용";
-                desc.innerText = "D-2-6(교환학생) 자격입니다. 본교 수강신청 및 TOPIK 성적 조건 충족 시 허용됩니다.";
+                title.innerText = dt('t25'); desc.innerText = dt('d26');
             } else if (visa === 'D4_1') {
-                title.innerText = "주중 및 주말 포함 최대 20시간 허용";
-                desc.innerText = "D-4-1(어학연수) 체류 6개월 및 출석률 90% 이상 조건을 충족하였습니다. (제조업/건설업 금지)";
+                title.innerText = dt('t20'); desc.innerText = dt('d20');
             }
         }
 
