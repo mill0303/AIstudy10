@@ -791,10 +791,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             initWorkHoursChart();
             renderLangTabs();
-            const h = (location.hash || '').slice(1);
-            const startLang = orientationData.notices[h] ? h : 'ko';
-            renderNotice(startLang);
-            if (orientationData.notices[h]) switchTab('multilingual');
+            renderNotice('ko');
             renderQATable();
             renderIATree();
             runSimulation();
@@ -1018,7 +1015,6 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">${hi}</div>
                 <dl class="divide-y divide-slate-200 border-t border-slate-200">${rows}</dl>
             `;
-            try { history.replaceState(null, '', '#' + langKey); } catch (e) {}
         }
 
         function copyCurrentNotice() {
