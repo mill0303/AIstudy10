@@ -50,7 +50,6 @@
          2. Multilingual Orientation Guide: Official notices in 10 languages, explicitly specifying D-2-1, D-2-2, D-2-3, D-2-4, D-2-6 visa codes.
          3. Translation QA Matrix: Audit matrix verifying legal terminology across all languages.
          4. Portal Architecture & Forms: GNB/LNB web tree with 5 target languages (KO, EN, ZH, JA, TH) and essential official form checklist.
-         5. AI Prompt Architect & Master Prompt Generator: Tailored AI Prompt builder incorporating granular D-2 visa codes.
     -->
     <!-- Visualization & Content Choices:
          - Chart.js Canvas bar chart dynamically linked with interactive simulator selection.
@@ -79,8 +78,7 @@
                     <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn px-4 py-2 rounded-md text-sm font-medium transition-colors text-blue-600 bg-blue-50">대시보드 & 연동 계산기</button>
                     <button onclick="switchTab('multilingual')" id="nav-multilingual" class="nav-btn px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-100">10개국어 안내문</button>
                     <button onclick="switchTab('qa')" id="nav-qa" class="nav-btn px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-100">번역 품질 검증</button>
-                    <button onclick="switchTab('architecture')" id="nav-architecture" class="nav-btn px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-100">웹 정보구조(IA)</button>
-                    <button onclick="switchTab('prompt-builder')" id="nav-prompt-builder" class="nav-btn px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-100">최종 프롬프트 생성기</button>
+                    <button onclick="switchTab('architecture')" id="nav-architecture" class="nav-btn px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-100">정보구조 & 서식 센터</button>
                 </nav>
             </div>
         </div>
@@ -89,8 +87,7 @@
             <button onclick="switchTab('dashboard')" class="px-3 py-1.5 rounded-md bg-blue-600 text-white whitespace-nowrap">대시보드</button>
             <button onclick="switchTab('multilingual')" class="px-3 py-1.5 rounded-md bg-white text-slate-700 border whitespace-nowrap">10개국어</button>
             <button onclick="switchTab('qa')" class="px-3 py-1.5 rounded-md bg-white text-slate-700 border whitespace-nowrap">번역검증</button>
-            <button onclick="switchTab('architecture')" class="px-3 py-1.5 rounded-md bg-white text-slate-700 border whitespace-nowrap">정보구조</button>
-            <button onclick="switchTab('prompt-builder')" class="px-3 py-1.5 rounded-md bg-white text-slate-700 border whitespace-nowrap">프롬프트 생성</button>
+            <button onclick="switchTab('architecture')" class="px-3 py-1.5 rounded-md bg-white text-slate-700 border whitespace-nowrap">정보구조 & 서식 센터</button>
         </div>
     </header>
 
@@ -209,14 +206,6 @@
                             </div>
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">국내 체류 기간</label>
-                            <select id="calc-stay" onchange="runSimulation()" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-                                <option value="OVER6">6개월 이상 경과</option>
-                                <option value="UNDER6">6개월 미만</option>
-                            </select>
-                        </div>
-
                         <!-- Result Box -->
                         <div id="sim-result-box" class="p-4 rounded-xl bg-blue-50 border border-blue-200 text-slate-800 transition-all">
                             <div class="font-bold text-blue-900 text-sm flex items-center justify-between">
@@ -235,10 +224,7 @@
         <!-- SECTION 2: MULTILINGUAL ORIENTATION GUIDES -->
         <section id="sec-multilingual" class="space-y-6 hidden">
             <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                <h2 class="text-xl font-bold text-slate-900 mb-2">10개 국어 다국어 유학생 오리엔테이션 안내문 (D-2 세부코드 포함)</h2>
-                <p class="text-xs text-slate-600 mb-6">
-                    법무부 출입국 규정에 맞춰 D-2-1(전문학사), D-2-2(학사), D-2-3(석사), D-2-4(박사), D-2-6(교환학생) 코드를 명확히 명시한 공식 안내문입니다.
-                </p>
+                <h2 class="text-xl font-bold text-slate-900 mb-6">2026 외국인 유학생 오리엔테이션 안내문 (10개 언어)</h2>
 
                 <!-- Language Tabs -->
                 <div class="flex overflow-x-auto pb-2 border-b border-slate-200 space-x-2 text-xs" id="lang-tab-container">
@@ -260,20 +246,22 @@
         <!-- SECTION 3: TRANSLATION QA MATRIX -->
         <section id="sec-qa" class="space-y-6 hidden">
             <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                <h2 class="text-xl font-bold text-slate-900 mb-2">다국어 번역 품질 점검 및 세부 비자 세분화 검증 결과서</h2>
-                <p class="text-xs text-slate-600 mb-6">
-                    구 ARC 표기를 **Residence Card**로 전면 보정함과 동시에, 혼동을 초래하던 일반 'D-2' 표기를 D-2-1부터 D-2-6까지 세부 코드로 명확히 검수하여 번역의 법적 정확성을 확보했습니다.
+                <h2 class="text-xl font-bold text-slate-900 mb-2">번역 검증: 날짜·시간·장소·준비물 일치 여부</h2>
+                <p class="text-xs text-slate-600 mb-4">
+                    각 언어 안내문에서 날짜(2026.11.4. 수), 시간(14:00~16:00, 등록 마감 13:40), 장소(가온대학교 학생회관 2층 국제회의실), 준비물(여권 또는 외국인등록증, 필기도구)이 원문과 동일하게 들어 있는지 자동 점검한 결과입니다.
                 </p>
+                <div id="qa-summary" class="mb-4 p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800"></div>
 
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-xs">
                         <thead>
                             <tr class="bg-slate-100 border-b border-slate-200 text-slate-700 font-bold">
-                                <th class="p-3">언어 (Language)</th>
-                                <th class="p-3">비자 세부코드 명시성</th>
-                                <th class="p-3">번역 정확도</th>
-                                <th class="p-3">법적고지 명확성</th>
-                                <th class="p-3">주요 검증 및 보정 내역 (QA Remarks)</th>
+                                <th class="p-3">언어</th>
+                                <th class="p-3">날짜·요일</th>
+                                <th class="p-3">시간(진행·등록)</th>
+                                <th class="p-3">장소</th>
+                                <th class="p-3">준비물</th>
+                                <th class="p-3">검수 메모</th>
                             </tr>
                         </thead>
                         <tbody id="qa-table-body" class="divide-y divide-slate-200">
@@ -289,26 +277,31 @@
             <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
                 <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 pb-4 mb-4 gap-2">
                     <div>
-                        <h2 class="text-xl font-bold text-slate-900 mb-1">외국인 유학생 안내 웹사이트 정보구조 (IA) & 서식 센터</h2>
+                        <h2 class="text-xl font-bold text-slate-900 mb-1">정보구조 & 서식 센터</h2>
                         <p class="text-xs text-slate-600">
                             D-2 세부 체류자격별 신청 절차를 다국어로 손쉽게 파악할 수 있는 포털 블루프린트입니다.
                         </p>
                     </div>
-                    <!-- Multilingual IA Legend Badge -->
-                    <div class="flex flex-wrap gap-1 text-[11px] font-semibold">
-                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded">🇰🇷 한국어</span>
-                        <span class="px-2 py-1 bg-slate-100 text-slate-700 rounded">🇺🇸 English</span>
-                        <span class="px-2 py-1 bg-red-50 text-red-700 rounded">🇨🇳 中文</span>
-                        <span class="px-2 py-1 bg-amber-50 text-amber-800 rounded">🇯🇵 日本語</span>
-                        <span class="px-2 py-1 bg-emerald-50 text-emerald-800 rounded">🇹🇭 ไทย</span>
+                    <!-- IA Language Selector -->
+                    <div class="flex flex-wrap gap-1 text-[11px] font-semibold" id="ia-lang-selector">
+                        <button onclick="setIALang('ko')" id="ia-lang-btn-ko" class="px-3 py-1.5 rounded-md border">한국어</button>
+                        <button onclick="setIALang('en')" id="ia-lang-btn-en" class="px-3 py-1.5 rounded-md border">English</button>
+                        <button onclick="setIALang('zh')" id="ia-lang-btn-zh" class="px-3 py-1.5 rounded-md border">中文</button>
+                        <button onclick="setIALang('vi')" id="ia-lang-btn-vi" class="px-3 py-1.5 rounded-md border">Tiếng Việt</button>
+                        <button onclick="setIALang('uz')" id="ia-lang-btn-uz" class="px-3 py-1.5 rounded-md border">O'zbek</button>
+                        <button onclick="setIALang('mn')" id="ia-lang-btn-mn" class="px-3 py-1.5 rounded-md border">Монгол</button>
+                        <button onclick="setIALang('ja')" id="ia-lang-btn-ja" class="px-3 py-1.5 rounded-md border">日本語</button>
+                        <button onclick="setIALang('ru')" id="ia-lang-btn-ru" class="px-3 py-1.5 rounded-md border">Русский</button>
+                        <button onclick="setIALang('id')" id="ia-lang-btn-id" class="px-3 py-1.5 rounded-md border">Bahasa</button>
+                        <button onclick="setIALang('th')" id="ia-lang-btn-th" class="px-3 py-1.5 rounded-md border">ไทย</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div class="lg:col-span-2 space-y-4">
                         <h3 class="text-sm font-bold text-slate-900 border-b pb-2 flex items-center justify-between">
-                            <span>메인 정보구조 (GNB / LNB 5개 국어 동시 명시)</span>
-                            <span class="text-xs font-normal text-slate-500">한국어 · English · 中文 · 日本語 · ไทย</span>
+                            <span>메인 정보구조 (GNB / LNB)</span>
+                            <span id="ia-current-lang" class="text-xs font-normal text-slate-500">한국어</span>
                         </h3>
                         <div class="space-y-3" id="ia-tree-container">
                             <!-- Dynamically generated via JS with 5 languages -->
@@ -316,86 +309,8 @@
                     </div>
 
                     <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 self-start">
-                        <h3 class="text-sm font-bold text-slate-900 mb-3">유학생 필수 행정 서식 및 서류 (Forms & Documents)</h3>
-                        <p class="text-xs text-slate-500 mb-3">5개 국어 서비스 연동 포털 제공 서식 양식 목록입니다.</p>
-                        <div class="space-y-2.5 text-xs">
-                            <label class="flex items-start space-x-2.5 bg-white p-3 rounded-lg border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300">
-                                <input type="checkbox" checked class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
-                                <div>
-                                    <span class="font-semibold text-slate-800 block">[서식 제34호] 시간제 취업 확인서</span>
-                                    <span class="text-[11px] text-slate-500 block">Part-time Work Permit Application / 兼职工作确认书 / 兼業許可申請書 / แบบฟอร์มขออนุญาตทำงานพิเศษ</span>
-                                </div>
-                            </label>
-                            <label class="flex items-start space-x-2.5 bg-white p-3 rounded-lg border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300">
-                                <input type="checkbox" checked class="rounded text-blue-600 focus:ring-blue-500 mt-0.5">
-                                <div>
-                                    <span class="font-semibold text-slate-800 block">통합신청서 (외국인등록 및 체류연장)</span>
-                                    <span class="text-[11px] text-slate-500 block">Integrated Application Form / 综合申请表 / 統合申請書 / แบบฟอร์มคำร้องยื่นรวม</span>
-                                </div>
-                            </label>
-                            <label class="flex items-start space-x-2.5 bg-white p-3 rounded-lg border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300">
-                                <input type="checkbox" checked class="rounded text-blue-600 focus:ring-blue-500 mt-0.5">
-                                <div>
-                                    <span class="font-semibold text-slate-800 block">체류지 증빙서류 (기숙사/임대차계약서)</span>
-                                    <span class="text-[11px] text-slate-500 block">Proof of Residence / 居住地证明 / 居住地証明書 / เอกสารยืนยันที่อยู่อาศัย</span>
-                                </div>
-                            </label>
-                            <label class="flex items-start space-x-2.5 bg-white p-3 rounded-lg border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300">
-                                <input type="checkbox" checked class="rounded text-blue-600 focus:ring-blue-500 mt-0.5">
-                                <div>
-                                    <span class="font-semibold text-slate-800 block">국민건강보험 예외 적용 신청서</span>
-                                    <span class="text-[11px] text-slate-500 block">NHIS Exemption Form / 健康保险例外申请 / 健康保険例外申請書 / แบบฟอร์มขอยกเว้นประกันสุขภาพ</span>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 5: MASTER PROMPT ARCHITECT -->
-        <section id="sec-prompt-builder" class="space-y-6 hidden">
-            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                <div class="border-b border-slate-200 pb-4 mb-6">
-                    <span class="px-2.5 py-1 bg-purple-100 text-purple-800 text-xs font-bold rounded-full">AI Prompt Engineering</span>
-                    <h2 class="text-xl font-bold text-slate-900 mt-2">D-2 세부자격 연동 교육행정 AI 마스터 프롬프트 생성기</h2>
-                    <p class="text-xs text-slate-600 mt-1">
-                        D-2-1부터 D-2-6까지의 세부 체류자격을 규정대로 완벽히 인식하여 답하도록 교정된 마스터 프롬프트입니다.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs">
-                        <h3 class="font-bold text-slate-800 text-sm">소속 대학 및 설정 입력</h3>
-                        <div>
-                            <label class="block font-medium text-slate-700 mb-1">소속 국립대학명</label>
-                            <input type="text" id="prompt-univ-name" value="한국국립대학교" class="w-full p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-purple-500 outline-none">
-                        </div>
-                        <div>
-                            <label class="block font-medium text-slate-700 mb-1">담당 부서</label>
-                            <input type="text" id="prompt-dept-name" value="국제교류처 / 유학생지원센터" class="w-full p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-purple-500 outline-none">
-                        </div>
-                        <div>
-                            <label class="block font-medium text-slate-700 mb-1">중점 지원 언어권</label>
-                            <input type="text" id="prompt-langs" value="한국어, 영어, 중국어, 일본어, 태국어, 베트남어" class="w-full p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-purple-500 outline-none">
-                        </div>
-                        <div>
-                            <label class="block font-medium text-slate-700 mb-1">추가 강조 사항</label>
-                            <textarea id="prompt-extra" rows="3" class="w-full p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-purple-500 outline-none">D-2 세부 코드(D-2-1 전문학사, D-2-2 학사, D-2-3 석사, D-2-4 박사, D-2-6 교환학생) 엄격 구분 적용, 웹 포털 5개국어(한국어, 영어, 중국어, 일본어, 태국어) 메뉴 연동</textarea>
-                        </div>
-                        <button onclick="generateCustomPrompt()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition-colors text-xs shadow">
-                            마스터 프롬프트 생성하기
-                        </button>
-                    </div>
-
-                    <div class="lg:col-span-2 flex flex-col">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs font-bold text-slate-700">생성된 마스터 프롬프트 (D-2 세부자격 & 5개 국어 IA 지원 교정완료)</span>
-                            <button onclick="copyGeneratedPrompt()" class="px-3 py-1 bg-slate-800 text-white text-xs font-medium rounded hover:bg-slate-700">
-                                프롬프트 전체 복사
-                            </button>
-                        </div>
-                        <textarea id="prompt-output-area" readonly class="w-full flex-grow p-4 bg-slate-900 text-emerald-400 font-mono text-xs rounded-xl border border-slate-800 leading-relaxed outline-none min-h-[380px]"></textarea>
+                        <h3 id="forms-heading" class="text-sm font-bold text-slate-900 mb-3">유학생 필수 행정 서류 체크리스트</h3>
+                        <div id="forms-container" class="space-y-2.5 text-xs"></div>
                     </div>
                 </div>
             </div>
@@ -416,198 +331,327 @@
         // Data Repository
         const orientationData = {
             notices: {
-                ko: {
-                    title: "2026학년도 외국인 유학생 필수 정착 및 체류 행정 안내 (D-2 세부 체류자격 명시)",
-                    body: `국립대학교 입학을 진심으로 축하합니다. 유학생 여러분의 체류자격은 학위 과정에 따라 아래와 같이 세부 구분(D-2-1 ~ D-2-6)되어 적용되므로, 본인의 세부 비자 코드를 반드시 확인하시기 바랍니다.
-
-📌 D-2 체류자격 세부 구분 안내
-- D-2-1: 전문학사 과정 (Associate Degree)
-- D-2-2: 학사 과정 (4년제 대학교 Bachelor's)
-- D-2-3: 석사 과정 (Master's Degree)
-- D-2-4: 박사 과정 (Ph.D. Degree)
-- D-2-6: 교환학생 (Exchange Student)
-- D-4-1: 일반연수 (어학연수생)
-
-1. 외국인등록 및 Residence Card 발급
-- 대상 및 기한: 대한민국 입국 후 90일 이내에 관할 출입국·외국인관서를 방문하거나 하이코리아(HiKorea)를 통해 외국인등록을 완료해야 합니다.
-- 제출 서류: 여권, 신청서, 표준입학허가서(D-2 세부 코드 표기 확인), 재학증명서, 체류지 증빙서류, 수수료.
-
-2. 국민건강보험 (NHIS) 및 민간보험 안내
-- 가입 시기: D-2(D-2-1~D-2-6) 유학생은 외국인등록 완료일 당일부터 자동 가입되며, D-4-1 어학연수생은 입국 후 6개월이 경과한 날부터 자동 가입됩니다.
-- 2026년 보험료: 유학생 경감 적용 기준 월 79,320원이며, 매월 25일까지 사전 납부해야 합니다.
-
-3. 시간제 취업 (아르바이트) 사전 허가제
-- 신청 요건:
-  * D-2-1 / D-2-2 (전문학사/학사): 직전학기 GPA C학점(2.0) 이상 및 TOPIK 3급 이상 시 주중 25시간 허용
-  * D-2-3 / D-2-4 (석사/박사): 직전학기 GPA C학점(2.0) 이상 및 TOPIK 4급 이상 시 주중 30시간 허용
-  * D-2-6 (교환학생): 소속 대학 성적 및 한국어 능력 조건 충족 시 허용
-  * D-4-1 (어학연수): 입국 6개월 경과 및 출석률 90% 이상 시 주중 20시간 허용
-- 주의: 사전 허가 없는 근무는 출입국관리법 위반으로 체류자격이 취소될 수 있습니다.`
+                "ko": {
+                                "title": "2026 외국인 유학생 오리엔테이션 안내문",
+                                "labels": [
+                                                "대상",
+                                                "일시",
+                                                "장소",
+                                                "참석 방법",
+                                                "준비물",
+                                                "주요 내용",
+                                                "문의",
+                                                "유의사항"
+                                ],
+                                "vals": [
+                                                "2026학년도 2학기 신입 외국인 유학생",
+                                                "2026년 11월 4일(수) 14:00~16:00",
+                                                "가온대학교 학생회관 2층 국제회의실",
+                                                "13:40까지 현장 등록 후 입장",
+                                                "여권 또는 외국인등록증, 필기도구",
+                                                "학사 일정 안내, 수강신청 방법, 비자·체류 안내, 도서관 및 학생지원 서비스, 질의응답",
+                                                "국제교류팀 (이메일·전화: 담당부서 확인 후 기입)",
+                                                "개인 신분증 원본은 안내 데스크에서 확인만 하며 제출·보관하지 않습니다."
+                                ],
+                                "chk": {
+                                                "month": "11월",
+                                                "wday": "수",
+                                                "floor": "2층",
+                                                "passport": "여권",
+                                                "card": "외국인등록증",
+                                                "pen": "필기도구"
+                                },
+                                "remark": "원문(기준 문서)"
                 },
-                en: {
-                    title: "2026 Mandatory Guide for International Students (Specific D-2 Visa Sub-codes)",
-                    body: `Welcome to Our National University. Please check your specific D-2 visa code (D-2-1 to D-2-6) as guidelines vary by degree level.
-
-📌 Specific D-2 Visa Classifications
-- D-2-1: Associate Degree
-- D-2-2: Bachelor's Degree (4-Year University)
-- D-2-3: Master's Degree
-- D-2-4: Ph.D. Degree
-- D-2-6: Exchange Student
-- D-4-1: General Training (Language Student)
-
-1. Foreigner Registration (Residence Card)
-- Deadline: Register at local Immigration Office or via HiKorea within 90 days of entry.
-- Documents: Passport, Application Form, Certificate of Admission (with specific D-2 code), Certificate of Enrollment, Proof of Residence, Fee.
-
-2. National Health Insurance (NHIS)
-- Enrollment: D-2 visa holders (D-2-1 through D-2-6) are automatically enrolled upon Foreigner Registration. D-4-1 students enrolled after 6 months.
-- 2026 Monthly Fee: KRW 79,320 (due by the 25th of each preceding month).
-
-3. Part-time Work Permit (HiKorea Approval)
-- Allowances:
-  * D-2-1 / D-2-2: GPA >= 2.0 & TOPIK Level 3+ -> Up to 25 hrs/week (Mon-Fri)
-  * D-2-3 / D-2-4: GPA >= 2.0 & TOPIK Level 4+ -> Up to 30 hrs/week (Mon-Fri)
-  * D-2-6: Permitted based on university criteria and language efficiency.
-  * Unlimited hours allowed during official university vacations for D-2 degree students.`
+                "en": {
+                                "title": "2026 International Student Orientation Notice",
+                                "labels": [
+                                                "Target",
+                                                "Date & Time",
+                                                "Venue",
+                                                "How to Attend",
+                                                "What to Bring",
+                                                "Main Program",
+                                                "Inquiries",
+                                                "Important Notice"
+                                ],
+                                "vals": [
+                                                "New international students entering in the 2nd semester of the 2026 academic year",
+                                                "Wednesday, November 4, 2026, 14:00–16:00",
+                                                "International Conference Room, 2nd Floor, Student Union Building, Kaon University (가온대학교)",
+                                                "Register on site by 13:40, then enter the room",
+                                                "Passport or Alien Registration Card (Residence Card), writing tools",
+                                                "Academic calendar, course registration, visa and stay guidance, library and student support services, Q&A",
+                                                "International Exchange Team (email and phone: to be added)",
+                                                "Your original ID is only checked at the information desk. It is not collected or kept."
+                                ],
+                                "chk": {
+                                                "month": "November",
+                                                "wday": "Wednesday",
+                                                "floor": "2nd Floor",
+                                                "passport": "Passport",
+                                                "card": "Residence Card",
+                                                "pen": "writing tools"
+                                },
+                                "remark": "ARC 대신 Residence Card 병기, 24시간제 유지"
                 },
-                zh: {
-                    title: "2026学年度 外国留学生居留指南 (包含 D-2 细分签证代码)",
-                    body: `欢迎来到国立大学。请明确确认您的 D-2 细分签证代码（D-2-1 至 D-2-6）。
-
-📌 D-2 签证细分说明
-- D-2-1: 专科学位课程
-- D-2-2: 本科学位课程 (4年制)
-- D-2-3: 硕士学位课程
-- D-2-4: 博士学位课程
-- D-2-6: 交换生课程
-- D-4-1: 语言研修生
-
-1. 外国人登录（Residence Card 办理）
-- 期限：入境后90天内完成办理。需确认标准入学许可书上的 D-2 细分代码。
-
-2. 国民健康保险 (NHIS)
-- 参保：D-2 (D-2-1~D-2-6) 登录之日起自动参保。D-4-1 入境满6个月后参保。
-- 2026年保费：每月 79,320韩元（25日前预缴）。
-
-3. 打工许可（时间制就业）
-- D-2-1 / D-2-2 (专科/本科): GPA 2.0以上且 TOPIK 3级以上，平时每周最多 25小时。
-- D-2-3 / D-2-4 (硕博): GPA 2.0以上且 TOPIK 4级以上，平时每周最多 30小时。
-- 假期打工：D-2 正规学位生在寒暑假期间工作时间无限制。`
+                "zh": {
+                                "title": "2026 外国留学生入学指导会通知",
+                                "labels": [
+                                                "对象",
+                                                "日期时间",
+                                                "地点",
+                                                "参加方式",
+                                                "准备物品",
+                                                "主要内容",
+                                                "咨询",
+                                                "注意事项"
+                                ],
+                                "vals": [
+                                                "2026学年度第二学期新入学的外国留学生",
+                                                "2026年11月4日（星期三）14:00~16:00",
+                                                "가온대학교（Kaon University）学生会馆2楼国际会议室",
+                                                "请于13:40前在现场登记后入场",
+                                                "护照或外国人登记证、书写工具",
+                                                "学业日程介绍、选课方法、签证及居留介绍、图书馆及学生支持服务、问答",
+                                                "国际交流组（电子邮箱和电话：待补充）",
+                                                "个人身份证件原件仅在服务台核验，不收取、不留存。"
+                                ],
+                                "chk": {
+                                                "month": "11月",
+                                                "wday": "星期三",
+                                                "floor": "2楼",
+                                                "passport": "护照",
+                                                "card": "外国人登记证",
+                                                "pen": "书写工具"
+                                },
+                                "remark": "星期三·2楼 대응 확인, 간체자 사용"
                 },
-                vi: {
-                    title: "Hướng Dẫn Hành Chính Cho Du Học Sinh 2026 (Phân Loại Mã Visa D-2 Chi Tiết)",
-                    body: `Chào mừng bạn đến với Trường Đại học Quốc gia. Vui lòng kiểm tra chính xác mã visa D-2 của bạn (D-2-1 đến D-2-6).
-
-📌 Phân Loại Mã Visa D-2 Chi Tiết:
-- D-2-1: Hệ Cao đẳng (Associate Degree)
-- D-2-2: Hệ Đại học (Bachelor's)
-- D-2-3: Hệ Thạc sĩ (Master's)
-- D-2-4: Hệ Tiến sĩ (Ph.D.)
-- D-2-6: Sinh viên Trao đổi (Exchange Student)
-- D-4-1: Du học tiếng (Language Trainee)
-
-1. Đăng Ký Người Nước Ngoài (Residence Card): Trong vòng 90 ngày kể từ ngày nhập cảnh.
-2. Bảo Hiểm Y Tế (NHIS): D-2 (D-2-1 ~ D-2-6) tham gia ngay khi đăng ký thẻ cư trú. Mức phí 2026: 79.320 KRW/tháng.
-3. Giấy Phép Làm Thêm:
-  * D-2-1 / D-2-2: GPA >= 2.0 & TOPIK 3 trở lên -> Tối đa 25 giờ/tuần.
-  * D-2-3 / D-2-4: GPA >= 2.0 & TOPIK 4 trở lên -> Tối đa 30 giờ/tuần.
-  * Kỳ nghỉ chính thức: Không giới hạn giờ làm đối với sinh viên D-2.`
+                "vi": {
+                                "title": "Thông báo Định hướng dành cho Du học sinh Nước ngoài 2026",
+                                "labels": [
+                                                "Đối tượng",
+                                                "Thời gian",
+                                                "Địa điểm",
+                                                "Cách tham dự",
+                                                "Cần chuẩn bị",
+                                                "Nội dung chính",
+                                                "Liên hệ",
+                                                "Lưu ý"
+                                ],
+                                "vals": [
+                                                "Du học sinh nước ngoài nhập học mới học kỳ 2 năm học 2026",
+                                                "Thứ Tư, ngày 4 tháng 11 năm 2026, 14:00~16:00",
+                                                "Phòng hội nghị quốc tế, tầng 2, Nhà sinh viên, Đại học Kaon (가온대학교)",
+                                                "Đăng ký trực tiếp tại chỗ trước 13:40 rồi vào phòng",
+                                                "Hộ chiếu hoặc thẻ đăng ký người nước ngoài, dụng cụ viết",
+                                                "Giới thiệu lịch học, cách đăng ký học phần, hướng dẫn visa và cư trú, thư viện và dịch vụ hỗ trợ sinh viên, hỏi đáp",
+                                                "Nhóm Giao lưu Quốc tế (email, điện thoại: sẽ bổ sung)",
+                                                "Bản gốc giấy tờ tùy thân chỉ được kiểm tra tại bàn hướng dẫn, không thu và không lưu giữ."
+                                ],
+                                "chk": {
+                                                "month": "tháng 11",
+                                                "wday": "Thứ Tư",
+                                                "floor": "tầng 2",
+                                                "passport": "Hộ chiếu",
+                                                "card": "thẻ đăng ký người nước ngoài",
+                                                "pen": "dụng cụ viết"
+                                },
+                                "remark": "Thứ Tư=수요일, 'tầng 2'=2층"
                 },
-                uz: {
-                    title: "2026-Xalqaro Talabalar Uchun Qo'llanma (D-2 Vizasining Aniq Turlari Bilan)",
-                    body: `Milliy Universitetimizga xush kelibsiz! D-2 vizangizning aniq kodini (D-2-1 dan D-2-6 gacha) tekshirib oling.
-
-📌 D-2 Visa Turlari:
-- D-2-1: Kichik mutaxassis (Associate)
-- D-2-2: Bakalavr (Bachelor)
-- D-2-3: Magistratura (Master)
-- D-2-4: Doktorantura (Ph.D.)
-- D-2-6: Almashinuv talabasi (Exchange)
-- D-4-1: Til o'rganuvchi (Language)
-
-1. Chet ellik sifatida ro'yxatdan o'tish (Residence Card): 90 kun ichida.
-2. Tibbiy sug'urta (NHIS): D-2 egalari ro'yxatdan o'tgach darhol. 2026-yilgi to'lov: 79,320 KRW/oy.
-3. Ishlash ruxsatnomasi: D-2-1/D-2-2 uchun haftasiga 25 soatgacha, D-2-3/D-2-4 uchun haftasiga 30 soatgacha.`
+                "uz": {
+                                "title": "2026-yil xorijiy talabalar uchun orientatsiya e'loni",
+                                "labels": [
+                                                "Mo'ljallangan",
+                                                "Sana va vaqt",
+                                                "Joy",
+                                                "Qatnashish tartibi",
+                                                "Olib kelish kerak",
+                                                "Asosiy mavzular",
+                                                "Murojaat",
+                                                "Eslatma"
+                                ],
+                                "vals": [
+                                                "2026-o'quv yili 2-semestrga qabul qilingan yangi xorijiy talabalar",
+                                                "2026-yil 4-noyabr, chorshanba, 14:00–16:00",
+                                                "Kaon universiteti (가온대학교) Talabalar markazi binosi, 2-qavat, xalqaro konferensiya zali",
+                                                "Soat 13:40 gacha joyida ro'yxatdan o'tib, zalga kiring",
+                                                "Pasport yoki chet el fuqarosi ro'yxatga olish kartasi, yozuv qurollari",
+                                                "O'quv jadvali, fanlarga yozilish usuli, viza va yashash tartibi bo'yicha ma'lumot, kutubxona va talabalarni qo'llab-quvvatlash xizmatlari, savol-javob",
+                                                "Xalqaro almashinuv guruhi (e-pochta va telefon: keyin kiritiladi)",
+                                                "Shaxsni tasdiqlovchi hujjatning asl nusxasi faqat axborot stolida tekshiriladi; topshirilmaydi va saqlanmaydi."
+                                ],
+                                "chk": {
+                                                "month": "noyabr",
+                                                "wday": "chorshanba",
+                                                "floor": "2-qavat",
+                                                "passport": "Pasport",
+                                                "card": "ro'yxatga olish kartasi",
+                                                "pen": "yozuv qurollari"
+                                },
+                                "remark": "월 이름(noyabr)·요일(chorshanba) 확인"
                 },
-                mn: {
-                    title: "2026 Оны Гадаад Оюутнуудад Зориулсан Заавар (D-2 Визний Ангиллаар)",
-                    body: `📌 D-2 Визний Ангилал:
-- D-2-1: Мэргэжлийн диплом (Associate)
-- D-2-2: Бакалавр (Bachelor)
-- D-2-3: Магистр (Master)
-- D-2-4: Доктор (Ph.D.)
-- D-2-6: Солилцооны оюутан (Exchange)
-- D-4-1: Хэлний бэлтгэл (Language)
-
-1. Гадаадын иргэний бүртгэл (Residence Card): 90 хоногийн дотор.
-2. Эрүүл мэндийн даатгал (NHIS): D-2 визтэй бол бүртгүүлсэн өдрөөс шууд хамрагдана. 2026 оны төлбөр: 79,320 вон/сар.`
+                "mn": {
+                                "title": "2026 оны гадаад оюутны чиглүүлэх уулзалтын зар",
+                                "labels": [
+                                                "Хамрах хүрээ",
+                                                "Огноо, цаг",
+                                                "Байршил",
+                                                "Хэрхэн оролцох",
+                                                "Бэлтгэх зүйл",
+                                                "Үндсэн агуулга",
+                                                "Лавлах",
+                                                "Анхаарах зүйл"
+                                ],
+                                "vals": [
+                                                "2026 оны хичээлийн жилийн 2-р улиралд шинээр элссэн гадаад оюутнууд",
+                                                "2026 оны 11-р сарын 4 (Лхагва гариг), 14:00–16:00",
+                                                "Каон их сургууль (가온대학교), Оюутны төвийн 2 давхар, Олон улсын хурлын танхим",
+                                                "13:40 цагаас өмнө газар дээр нь бүртгүүлээд орно",
+                                                "Паспорт эсвэл гадаадын иргэний бүртгэлийн үнэмлэх, бичгийн хэрэгсэл",
+                                                "Хичээлийн хуваарь, хичээл сонгох арга, виз болон оршин суух тухай зөвлөгөө, номын сан ба оюутны дэмжлэгийн үйлчилгээ, асуулт хариулт",
+                                                "Олон улсын харилцааны баг (имэйл, утас: дараа нэмнэ)",
+                                                "Иргэний үнэмлэхний эх хувийг зөвхөн мэдээллийн цэг дээр шалгах бөгөөд хүлээн авахгүй, хадгалахгүй."
+                                ],
+                                "chk": {
+                                                "month": "11-р сарын",
+                                                "wday": "Лхагва",
+                                                "floor": "2 давхар",
+                                                "passport": "Паспорт",
+                                                "card": "бүртгэлийн үнэмлэх",
+                                                "pen": "бичгийн хэрэгсэл"
+                                },
+                                "remark": "월은 '11-р сарын' 형식, Лхагва=수요일"
                 },
-                ja: {
-                    title: "2026年度 外国人留学生 必修行政案内 (D-2詳細ビザコード明記)",
-                    body: `📌 D-2 詳細ビザコード区分
-- D-2-1: 専門学士課程
-- D-2-2: 学士課程（4年制大学）
-- D-2-3: 修士課程
-- D-2-4: 博士課程
-- D-2-6: 交換学生
-- D-4-1: 言語研修生（語学堂）
-
-1. 外国人登録（Residence Card）: 入国後90日以内。
-2. 国民健康保険 (NHIS): D-2 (D-2-1〜D-2-6) は登録完了日から自動加入。2026年度保険料: 月額 79,320ウォン。`
+                "ja": {
+                                "title": "2026年 外国人留学生オリエンテーション案内",
+                                "labels": [
+                                                "対象",
+                                                "日時",
+                                                "場所",
+                                                "参加方法",
+                                                "持ち物",
+                                                "主な内容",
+                                                "問い合わせ",
+                                                "注意事項"
+                                ],
+                                "vals": [
+                                                "2026年度後期（2学期）入学の新入外国人留学生",
+                                                "2026年11月4日（水）14:00〜16:00",
+                                                "가온대학교（Kaon University）学生会館2階 国際会議室",
+                                                "13:40までに会場で受付後、入場",
+                                                "パスポートまたは外国人登録証、筆記用具",
+                                                "学事日程の案内、履修登録の方法、ビザ・在留案内、図書館および学生支援サービス、質疑応答",
+                                                "国際交流チーム（メール・電話番号は後日記入）",
+                                                "身分証明書の原本は案内デスクで確認のみ行い、提出・保管はしません。"
+                                ],
+                                "chk": {
+                                                "month": "11月",
+                                                "wday": "水",
+                                                "floor": "2階",
+                                                "passport": "パスポート",
+                                                "card": "外国人登録証",
+                                                "pen": "筆記用具"
+                                },
+                                "remark": "水=수요일, 履修登録=수강신청"
                 },
-                ru: {
-                    title: "Официальное Руководство Для Иностранных Студентов На 2026 Год (Коды D-2)",
-                    body: `📌 Подробные коды визы D-2:
-- D-2-1: Колледж (Associate)
-- D-2-2: Бакалавриат (Bachelor)
-- D-2-3: Магистратура (Master)
-- D-2-4: Докторантура (Ph.D.)
-- D-2-6: Студент по обмену (Exchange)
-- D-4-1: Языковые курсы (Language)
-
-1. Регистрация (Residence Card): В течение 90 дней.
-2. Страховка (NHIS): Студенты D-2 подключаются автоматически. 2026 год: 79,320 вон/мес.`
+                "ru": {
+                                "title": "Объявление об ориентационной встрече для иностранных студентов 2026",
+                                "labels": [
+                                                "Для кого",
+                                                "Дата и время",
+                                                "Место",
+                                                "Как участвовать",
+                                                "Что взять",
+                                                "Программа",
+                                                "Контакты",
+                                                "Важно"
+                                ],
+                                "vals": [
+                                                "Новые иностранные студенты, поступившие на 2-й семестр 2026 учебного года",
+                                                "Среда, 4 ноября 2026 г., 14:00–16:00",
+                                                "Международный конференц-зал, 2-й этаж, Студенческий центр университета Каон (가온대학교)",
+                                                "Регистрация на месте до 13:40, затем вход в зал",
+                                                "Паспорт или карточку иностранного гражданина, письменные принадлежности",
+                                                "Учебный календарь, порядок записи на курсы, информация о визе и пребывании, библиотека и услуги поддержки студентов, вопросы и ответы",
+                                                "Группа международного обмена (email и телефон будут добавлены позже)",
+                                                "Оригинал документа, удостоверяющего личность, лишь проверяется на стойке информации; он не принимается и не хранится."
+                                ],
+                                "chk": {
+                                                "month": "ноября",
+                                                "wday": "Среда",
+                                                "floor": "2-й этаж",
+                                                "passport": "Паспорт",
+                                                "card": "карточку иностранного гражданина",
+                                                "pen": "письменные принадлежности"
+                                },
+                                "remark": "월 속격형(ноября), Среда=수요일"
                 },
-                id: {
-                    title: "Panduan Mahasiswa Internasional 2026 (Kode Sub-Visa D-2 Rinci)",
-                    body: `📌 Klasifikasi Sub-Kode Visa D-2:
-- D-2-1: Associate Degree
-- D-2-2: Sarjana / Bachelor (S1)
-- D-2-3: Magister / Master (S2)
-- D-2-4: Doktor / Ph.D. (S3)
-- D-2-6: Pertukaran Mahasiswa (Exchange)
-- D-4-1: Kursus Bahasa (Language Trainee)
-
-1. Registrasi Orang Asing (Residence Card): Dalam 90 hari.
-2. Asuransi Kesehatan (NHIS): D-2 terdaftar otomatis. Biaya 2026: 79.320 KRW/bulan.`
+                "id": {
+                                "title": "Pengumuman Orientasi Mahasiswa Internasional 2026",
+                                "labels": [
+                                                "Sasaran",
+                                                "Tanggal & Waktu",
+                                                "Tempat",
+                                                "Cara Hadir",
+                                                "Yang Dibawa",
+                                                "Materi Utama",
+                                                "Kontak",
+                                                "Catatan Penting"
+                                ],
+                                "vals": [
+                                                "Mahasiswa internasional baru semester 2 tahun akademik 2026",
+                                                "Rabu, 4 November 2026, pukul 14:00–16:00",
+                                                "Ruang Konferensi Internasional, Lantai 2, Gedung Kemahasiswaan Universitas Kaon (가온대학교)",
+                                                "Daftar langsung di lokasi paling lambat pukul 13:40, lalu masuk",
+                                                "Paspor atau kartu registrasi orang asing, alat tulis",
+                                                "Jadwal akademik, cara pengisian rencana studi, informasi visa dan izin tinggal, perpustakaan dan layanan dukungan mahasiswa, tanya jawab",
+                                                "Tim Pertukaran Internasional (email dan telepon: akan ditambahkan)",
+                                                "Asli kartu identitas hanya diperiksa di meja informasi, tidak diserahkan maupun disimpan."
+                                ],
+                                "chk": {
+                                                "month": "November",
+                                                "wday": "Rabu",
+                                                "floor": "Lantai 2",
+                                                "passport": "Paspor",
+                                                "card": "kartu registrasi orang asing",
+                                                "pen": "alat tulis"
+                                },
+                                "remark": "Rabu=수요일, Lantai 2=2층"
                 },
-                th: {
-                    title: "คู่มือนักศึกษาต่างชาติ ประจำปี 2026 (ระบุรหัสวีซ่า D-2 อย่างละเอียด)",
-                    body: `📌 รหัสจำแนกวีซ่า D-2 อย่างละเอียด:
-- D-2-1: หลักสูตรอนุปริญญา (Associate)
-- D-2-2: หลักสูตรปริญญาตรี (Bachelor)
-- D-2-3: หลักสูตรปริญญาโท (Master)
-- D-2-4: หลักสูตรปริญญาเอก (Ph.D.)
-- D-2-6: นักศึกษาแลกเปลี่ยน (Exchange)
-- D-4-1: นักเรียนภาษา (Language)
-
-1. การลงทะเบียนคนต่างด้าว (Residence Card): 内 90 วัน
-2. ประกันสุขภาพ (NHIS): D-2 สมัครอัตโนมัติตั้งแต่วันลงทะเบียน ค่าเบี้ยประกันปี 2026: 79,320 วอน/เดือน`
+                "th": {
+                                "title": "ประกาศปฐมนิเทศนักศึกษาต่างชาติ ประจำปี 2026",
+                                "labels": [
+                                                "กลุ่มเป้าหมาย",
+                                                "วันและเวลา",
+                                                "สถานที่",
+                                                "วิธีเข้าร่วม",
+                                                "สิ่งที่ต้องเตรียม",
+                                                "เนื้อหาหลัก",
+                                                "สอบถาม",
+                                                "ข้อควรทราบ"
+                                ],
+                                "vals": [
+                                                "นักศึกษาต่างชาติใหม่ภาคเรียนที่ 2 ปีการศึกษา 2026",
+                                                "วันพุธที่ 4 พฤศจิกายน ค.ศ. 2026 เวลา 14:00–16:00 น.",
+                                                "ห้องประชุมนานาชาติ ชั้น 2 อาคารกิจกรรมนักศึกษา มหาวิทยาลัย Kaon (가온대학교)",
+                                                "ลงทะเบียนหน้างานภายในเวลา 13:40 น. แล้วจึงเข้าห้อง",
+                                                "หนังสือเดินทางหรือบัตรลงทะเบียนคนต่างด้าว อุปกรณ์เขียน",
+                                                "ปฏิทินการศึกษา วิธีลงทะเบียนเรียน ข้อมูลวีซ่าและการพำนัก ห้องสมุดและบริการสนับสนุนนักศึกษา ถามตอบ",
+                                                "ทีมแลกเปลี่ยนระหว่างประเทศ (อีเมลและโทรศัพท์: จะเพิ่มภายหลัง)",
+                                                "ต้นฉบับบัตรประจำตัวจะตรวจสอบที่โต๊ะประชาสัมพันธ์เท่านั้น ไม่เก็บและไม่ยึดไว้"
+                                ],
+                                "chk": {
+                                                "month": "พฤศจิกายน",
+                                                "wday": "พุธ",
+                                                "floor": "ชั้น 2",
+                                                "passport": "หนังสือเดินทาง",
+                                                "card": "บัตรลงทะเบียนคนต่างด้าว",
+                                                "pen": "อุปกรณ์เขียน"
+                                },
+                                "remark": "서기(ค.ศ.) 2026 명시 — 불기(2569) 혼동 방지"
                 }
-            },
-            qaData: [
-                { lang: "한국어 (Korean)", term: "D-2-1 ~ D-2-6 검증", acc: "Master (100%)", legal: "Master (100%)", remark: "D-2 세부 코드(전문학사~교환학생) 및 2026 개정령 완벽 반영" },
-                { lang: "영어 (English)", term: "D-2-1 ~ D-2-6 명시", acc: "우수", legal: "우수", remark: "D-2 sub-codes (Associate to Ph.D.) & Residence Card 명시" },
-                { lang: "중국어 간체 (Chinese)", term: "D-2 细分代码 验证", acc: "우수", legal: "우수", remark: "专科/本科/硕博/交换生 代码完全对齐" },
-                { lang: "베트남어 (Vietnamese)", term: "Phân loại D-2 rõ ràng", acc: "우수", legal: "우수", remark: "Mã visa D-2-1 đến D-2-6 được dịch chính xác" },
-                { lang: "우즈베크어 (Uzbek)", term: "D-2 turlari anqlandi", acc: "우수", legal: "우수", remark: "D-2-1~D-2-6 viza kodi va ishlash soatlari ajratildi" },
-                { lang: "몽골어 (Mongolian)", term: "D-2 ангилал шалгагдсан", acc: "우수", legal: "우수", remark: "Бакалавр, магистр, солилцооны визний ялгааг тусгасан" },
-                { lang: "일본어 (Japanese)", term: "D-2詳細コード検証済", acc: "우수", legal: "우수", remark: "D-2-1〜D-2-6の課程別労働時間制限を明記" },
-                { lang: "러시아어 (Russian)", term: "Коды D-2 проверены", acc: "우수", legal: "우수", remark: "Разделение D-2-1~D-2-6 по степеням обучения" },
-                { lang: "인도네시아어 (Indonesian)", term: "Kode D-2 Terverifikasi", acc: "우수", legal: "우수", remark: "Klasifikasi D-2-1 sampai D-2-6 disesuaikan" },
-                { lang: "태국어 (Thai)", term: "ตรวจสอบรหัส D-2 แล้ว", acc: "우수", legal: "우수", remark: "ระบุรหัส D-2-1 ถึง D-2-6 ชัดเจนตามกฎหมาย" }
-            ],
+},
             // MULTILINGUAL IA TREE (Korean, English, Chinese, Japanese, Thai)
             iaTreeMulti: [
                 {
@@ -615,7 +659,7 @@
                         ko: "1. 입국 및 체류안내 (D-2 세부코드별)",
                         en: "1. Entry & Stay Guide (By D-2 Sub-code)",
                         zh: "1. 入境及居留指南 (按D-2细分代码)",
-                        ja: "1. 入국及び滞在案内 (D-2詳細コード別)",
+                        ja: "1. 入国及び滞在案内 (D-2詳細コード別)",
                         th: "1. คู่มือการเข้าเมืองและการพำนัก (ตามรหัส D-2)"
                     },
                     lnb: [
@@ -719,7 +763,7 @@
                             ko: "4.1 학사 및 GKS 장학 안내",
                             en: "4.1 Academic & GKS Scholarship Guide",
                             zh: "4.1 学务及GKS奖学金指南",
-                            ja: "4.1 학事及びGKS奨学金案内",
+                            ja: "4.1 学事及びGKS奨学金案内",
                             th: "4.1 คำแนะนำการเรียนและทุนการศึกษา GKS"
                         },
                         {
@@ -747,15 +791,17 @@
         document.addEventListener("DOMContentLoaded", () => {
             initWorkHoursChart();
             renderLangTabs();
-            renderNotice('ko');
+            const h = (location.hash || '').slice(1);
+            const startLang = orientationData.notices[h] ? h : 'ko';
+            renderNotice(startLang);
+            if (orientationData.notices[h]) switchTab('multilingual');
             renderQATable();
             renderIATree();
             runSimulation();
-            generateCustomPrompt();
         });
 
         function switchTab(tabId) {
-            const sections = ['dashboard', 'multilingual', 'qa', 'architecture', 'prompt-builder'];
+            const sections = ['dashboard', 'multilingual', 'qa', 'architecture'];
             sections.forEach(sec => {
                 const el = document.getElementById(`sec-${sec}`);
                 if (el) el.classList.add('hidden');
@@ -884,7 +930,6 @@
             const visa = document.getElementById('calc-visa').value;
             const gpa = document.getElementById('calc-gpa').value;
             const topik = document.getElementById('calc-topik').value;
-            const stay = document.getElementById('calc-stay').value;
 
             const badge = document.getElementById('sim-badge');
             const title = document.getElementById('sim-title');
@@ -898,14 +943,6 @@
                 badge.innerText = "신청 불가";
                 title.innerText = "성적/출석 미달로 취업 허가 불가";
                 desc.innerText = "D-2 비자(D-2-1~D-2-6)는 직전학기 GPA C학점(2.0) 이상, D-4-1은 출석률 90% 이상이어야 시간제 취업 허가를 신청할 수 있습니다.";
-                return;
-            }
-
-            if (visa === 'D4_1' && stay === 'UNDER6') {
-                badge.className = "px-2 py-0.5 bg-amber-600 text-white rounded text-xs";
-                badge.innerText = "대기 필요";
-                title.innerText = "D-4-1 체류 기간 6개월 미만";
-                desc.innerText = "D-4-1 어학연수생은 입국 후 6개월이 경과한 시점부터 시간제 취업 허가 신청이 가능합니다.";
                 return;
             }
 
@@ -957,136 +994,141 @@
             Object.keys(orientationData.notices).forEach(k => {
                 const btn = document.getElementById(`lang-btn-${k}`);
                 if (btn) {
-                    btn.className = (k === langKey) 
+                    btn.className = (k === langKey)
                         ? "px-3 py-1.5 rounded-md font-medium border border-blue-600 bg-blue-600 text-white"
                         : "px-3 py-1.5 rounded-md font-medium border border-slate-200 bg-white text-slate-700 hover:bg-slate-100";
                 }
             });
 
-            const data = orientationData.notices[langKey];
+            const d = orientationData.notices[langKey];
             const area = document.getElementById('notice-content-area');
+            area.setAttribute('lang', langKey === 'zh' ? 'zh-Hans' : langKey);
+            const hi = [1, 2, 4].map(i => `
+                <div class="bg-white border border-blue-200 rounded-lg p-3">
+                    <div class="text-[11px] font-bold text-blue-700 mb-1">${d.labels[i]}</div>
+                    <div class="text-sm font-semibold text-slate-900 leading-snug">${d.vals[i]}</div>
+                </div>`).join('');
+            const rows = d.labels.map((l, i) => `
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-4 py-2.5">
+                    <dt class="font-bold text-slate-700">${l}</dt>
+                    <dd class="sm:col-span-3 text-slate-800 leading-relaxed">${d.vals[i]}</dd>
+                </div>`).join('');
             area.innerHTML = `
-                <h3 class="text-base font-bold text-slate-900 border-b border-slate-200 pb-2">${data.title}</h3>
-                <div class="whitespace-pre-line text-slate-700 leading-relaxed font-sans">${data.body}</div>
+                <h3 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2 pr-24">${d.title}</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">${hi}</div>
+                <dl class="divide-y divide-slate-200 border-t border-slate-200">${rows}</dl>
             `;
+            try { history.replaceState(null, '', '#' + langKey); } catch (e) {}
         }
 
         function copyCurrentNotice() {
-            const data = orientationData.notices[currentLangKey];
-            const textToCopy = `${data.title}\n\n${data.body}`;
+            const d = orientationData.notices[currentLangKey];
+            const textToCopy = `${d.title}\n\n` + d.labels.map((l, i) => `${l}: ${d.vals[i]}`).join('\n');
             navigator.clipboard.writeText(textToCopy).then(() => {
                 alert('안내문 텍스트가 클립보드에 복사되었습니다.');
             });
         }
 
-        function renderQATable() {
-            const tbody = document.getElementById('qa-table-body');
-            tbody.innerHTML = orientationData.qaData.map(row => `
-                <tr class="hover:bg-slate-50 transition-colors">
-                    <td class="p-3 font-semibold text-slate-800">${row.lang}</td>
-                    <td class="p-3"><span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-medium">${row.term}</span></td>
-                    <td class="p-3"><span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-medium">${row.acc}</span></td>
-                    <td class="p-3"><span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-medium">${row.legal}</span></td>
-                    <td class="p-3 text-slate-600">${row.remark}</td>
-                </tr>
-            `).join('');
+        // Automatic consistency check of date / time / venue / items against the source notice
+        function checkNotice(d) {
+            const has = (s, t) => s.toLowerCase().includes(t.toLowerCase());
+            const v = d.vals, c = d.chk;
+            return {
+                date:  /2026/.test(v[1]) && /(?<!\d)4(?!\d)/.test(v[1]) && has(v[1], c.month) && has(v[1], c.wday),
+                time:  v[1].includes('14:00') && v[1].includes('16:00') && v[3].includes('13:40'),
+                place: v[2].includes('가온대학교') && has(v[2], c.floor),
+                items: has(v[4], c.passport) && has(v[4], c.card) && has(v[4], c.pen)
+            };
         }
 
-        // Render Multilingual IA Tree (5 Languages: KO, EN, ZH, JA, TH)
+        function renderQATable() {
+            const langNames = { ko:"한국어", en:"English", zh:"中文", vi:"Tiếng Việt", uz:"O'zbek", mn:"Монгол", ja:"日本語", ru:"Русский", id:"Bahasa Indonesia", th:"ไทย" };
+            const cell = ok => ok
+                ? '<span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-medium">✓ 일치</span>'
+                : '<span class="px-2 py-0.5 bg-red-100 text-red-800 rounded font-medium">✗ 확인 필요</span>';
+            let pass = 0, total = 0;
+            const rows = Object.keys(orientationData.notices).map(k => {
+                const d = orientationData.notices[k], r = checkNotice(d);
+                Object.values(r).forEach(x => { total++; if (x) pass++; });
+                return `<tr class="hover:bg-slate-50 transition-colors">
+                    <td class="p-3 font-semibold text-slate-800">${langNames[k]}</td>
+                    <td class="p-3">${cell(r.date)}</td>
+                    <td class="p-3">${cell(r.time)}</td>
+                    <td class="p-3">${cell(r.place)}</td>
+                    <td class="p-3">${cell(r.items)}</td>
+                    <td class="p-3 text-slate-600">${d.remark}</td>
+                </tr>`;
+            }).join('');
+            document.getElementById('qa-table-body').innerHTML = rows;
+            document.getElementById('qa-summary').innerText = `점검 결과: 10개 언어 × 4개 항목 = ${total}건 중 ${pass}건 일치` + (pass === total ? ' (불일치 없음)' : ' — 불일치 항목을 확인하세요');
+        }
+
+        // Render Multilingual IA Tree: only the selected language is shown
+        const iaLangNames = { ko: "한국어", en: "English", zh: "中文", vi: "Tiếng Việt", uz: "O'zbek", mn: "Монгол", ja: "日本語", ru: "Русский", id: "Bahasa", th: "ไทย" };
+        const formsData = [
+            { ko: "[서식 제34호] 시간제 취업 확인서", en: "Part-time Work Permit Application", zh: "兼职工作确认书", ja: "兼業許可申請書", th: "แบบฟอร์มขออนุญาตทำงานพิเศษ" },
+            { ko: "통합신청서 (외국인등록 및 체류연장)", en: "Integrated Application Form", zh: "综合申请表", ja: "統合申請書", th: "แบบฟอร์มคำร้องยื่นรวม" },
+            { ko: "체류지 증빙서류 (기숙사/임대차계약서)", en: "Proof of Residence", zh: "居住地证明", ja: "居住地証明書", th: "เอกสารยืนยันที่อยู่อาศัย" },
+            { ko: "국민건강보험 예외 적용 신청서", en: "NHIS Exemption Form", zh: "健康保险例外申请", ja: "健康保険例外申請書", th: "แบบฟอร์มขอยกเว้นประกันสุขภาพ" }
+        ];
+        const formsHeading = {
+            ko: "유학생 필수 행정 서류 체크리스트",
+            en: "Essential Administrative Documents Checklist for International Students",
+            zh: "留学生必备行政文件清单",
+            ja: "留学生 必須行政書類チェックリスト",
+            th: "รายการตรวจสอบเอกสารทางราชการที่นักศึกษาต่างชาติต้องมี",
+            "vi": "Danh sách kiểm tra giấy tờ hành chính cần thiết cho du học sinh", "uz": "Xalqaro talabalar uchun zarur ma'muriy hujjatlar ro'yxati", "mn": "Гадаад оюутанд шаардлагатай захиргааны бичиг баримтын шалгах хуудас", "ru": "Контрольный список обязательных административных документов для иностранных студентов", "id": "Daftar Periksa Dokumen Administrasi Wajib bagi Mahasiswa Internasional"
+        };
+        // Additional languages (vi, uz, mn, ru, id): [GNB, [LNB x3]] per group, in the same order as iaTreeMulti
+        const iaExtra = {"vi": [["1. Hướng dẫn nhập cảnh và cư trú (theo mã phụ D-2)", ["1.1 Đăng ký người nước ngoài (D-2-1~D-2-6)", "1.2 Gia hạn và thay đổi tư cách lưu trú", "1.3 Khai báo thay đổi nơi cư trú (trong 14 ngày)"]], ["2. Bảo hiểm y tế và dịch vụ y tế", ["2.1 Bảo hiểm y tế quốc dân (2026: 79.320 won)", "2.2 Bảo hiểm nhóm tư nhân cho du học sinh", "2.3 Trạm y tế trường và bệnh viện chỉ định"]], ["3. Làm thêm (việc làm theo giờ)", ["3.1 Số giờ được phép theo bậc học D-2 và TOPIK", "3.2 Hướng dẫn điền [Mẫu số 34]", "3.3 Ngành nghề bị cấm (sản xuất/xây dựng/giao hàng)"]], ["4. Hỗ trợ đời sống đại học", ["4.1 Hướng dẫn học vụ và học bổng GKS", "4.2 Đường dây nóng đa ngôn ngữ (1345/1330)", "4.3 Tải biểu mẫu hành chính"]]], "uz": [["1. Kirish va yashash bo'yicha qo'llanma (D-2 kichik kodlari bo'yicha)", ["1.1 Chet elliklarni ro'yxatga olish (D-2-1~D-2-6)", "1.2 Yashash maqomini uzaytirish va o'zgartirish", "1.3 Yashash joyi o'zgarganini bildirish (14 kun ichida)"]], ["2. Tibbiy sug'urta va tibbiy xizmat", ["2.1 Milliy tibbiy sug'urta (2026: 79 320 von)", "2.2 Talabalar uchun xususiy guruh sug'urtasi", "2.3 Universitet tibbiyot punkti va belgilangan kasalxonalar"]], ["3. Soatbay ish (qo'shimcha ish)", ["3.1 D-2 daraja va TOPIK bo'yicha ruxsat etilgan soatlar", "3.2 [34-shakl] to'ldirish bo'yicha qo'llanma", "3.3 Taqiqlangan ish turlari (ishlab chiqarish/qurilish/kuryer)"]], ["4. Universitet hayotini qo'llab-quvvatlash", ["4.1 O'quv jarayoni va GKS stipendiyasi bo'yicha ma'lumot", "4.2 Ko'p tilli ishonch telefoni (1345/1330)", "4.3 Ma'muriy shakllarni yuklab olish"]]], "mn": [["1. Нэвтрэх ба оршин суух заавар (D-2 дэд кодоор)", ["1.1 Гадаадын иргэний бүртгэл (D-2-1~D-2-6)", "1.2 Оршин суух эрхийг сунгах ба өөрчлөх", "1.3 Оршин суугаа хаяг өөрчлөх мэдүүлэг (14 хоногийн дотор)"]], ["2. Эрүүл мэндийн даатгал ба эмнэлгийн үйлчилгээ", ["2.1 Улсын эрүүл мэндийн даатгал (2026: 79,320 вон)", "2.2 Оюутны хувийн хамтын даатгал", "2.3 Сургуулийн эрүүл мэндийн төв ба чиглүүлэх эмнэлгүүд"]], ["3. Цагийн ажил (түр ажил)", ["3.1 D-2 зэрэг болон TOPIK-ийн дагуу зөвшөөрөгдөх цаг", "3.2 [34-р маягт] бөглөх заавар", "3.3 Хориотой ажил (үйлдвэр/барилга/хүргэлт)"]], ["4. Их сургуулийн амьдралын дэмжлэг", ["4.1 Сургалт ба GKS тэтгэлгийн мэдээлэл", "4.2 Олон хэлтэй лавлах утас (1345/1330)", "4.3 Захиргааны маягт татах"]]], "ru": [["1. Въезд и пребывание (по подкодам D-2)", ["1.1 Регистрация иностранца (D-2-1~D-2-6)", "1.2 Продление и изменение статуса пребывания", "1.3 Уведомление о смене адреса (в течение 14 дней)"]], ["2. Медицинская страховка и медицинские услуги", ["2.1 Национальное медицинское страхование (2026: 79 320 вон)", "2.2 Частная групповая страховка для студентов", "2.3 Медпункт университета и партнёрские больницы"]], ["3. Подработка (почасовая занятость)", ["3.1 Допустимые часы по уровню D-2 и TOPIK", "3.2 Как заполнить [форму № 34]", "3.3 Запрещённые виды работ (производство/стройка/курьер)"]], ["4. Поддержка студенческой жизни", ["4.1 Учёба и стипендия GKS", "4.2 Многоязычная горячая линия (1345/1330)", "4.3 Скачать административные бланки"]]], "id": [["1. Panduan Masuk dan Tinggal (per sub-kode D-2)", ["1.1 Registrasi Orang Asing (D-2-1~D-2-6)", "1.2 Perpanjangan dan Perubahan Status Izin Tinggal", "1.3 Lapor Perubahan Alamat (dalam 14 hari)"]], ["2. Asuransi Kesehatan dan Layanan Medis", ["2.1 Asuransi Kesehatan Nasional (2026: 79.320 won)", "2.2 Asuransi Kelompok Swasta untuk Mahasiswa", "2.3 Pusat Kesehatan Kampus dan Rumah Sakit Rujukan"]], ["3. Kerja Paruh Waktu", ["3.1 Jam Kerja yang Diizinkan menurut Jenjang D-2 dan TOPIK", "3.2 Panduan Mengisi [Formulir No. 34]", "3.3 Pekerjaan Terlarang (pabrik/konstruksi/kurir)"]], ["4. Dukungan Kehidupan Kampus", ["4.1 Panduan Akademik dan Beasiswa GKS", "4.2 Hotline Multibahasa (1345/1330)", "4.3 Unduh Formulir Administrasi"]]]};
+        const formsExtra = {"vi": ["Đơn xin giấy phép làm thêm", "Đơn đăng ký tổng hợp", "Giấy tờ chứng minh nơi cư trú", "Đơn xin miễn trừ bảo hiểm y tế quốc dân (NHIS)"], "uz": ["Soatbay ishga ruxsat so'rovnomasi", "Yagona ariza shakli", "Yashash joyini tasdiqlovchi hujjat", "Tibbiy sug'urtadan ozod qilish arizasi (NHIS)"], "mn": ["Цагийн ажлын зөвшөөрлийн хүсэлт", "Нэгдсэн өргөдлийн маягт", "Оршин суугаа газрын нотлох баримт", "Эрүүл мэндийн даатгалаас чөлөөлөх өргөдөл (NHIS)"], "ru": ["Заявление на разрешение подработки", "Единое заявление", "Подтверждение места проживания", "Заявление об освобождении от NHIS"], "id": ["Formulir Izin Kerja Paruh Waktu", "Formulir Pengajuan Terpadu", "Bukti Tempat Tinggal", "Formulir Pengecualian Asuransi Kesehatan (NHIS)"]};
+        Object.keys(iaExtra).forEach(lg => {
+            iaExtra[lg].forEach((g, i) => {
+                orientationData.iaTreeMulti[i].gnb[lg] = g[0];
+                g[1].forEach((t, j) => { orientationData.iaTreeMulti[i].lnb[j][lg] = t; });
+            });
+            formsExtra[lg].forEach((t, i) => { formsData[i][lg] = t; });
+        });
+        let currentIALang = 'ko';
+
+        function setIALang(lang) {
+            currentIALang = lang;
+            renderIATree();
+        }
+
         function renderIATree() {
+            const lang = currentIALang;
+            Object.keys(iaLangNames).forEach(k => {
+                const btn = document.getElementById(`ia-lang-btn-${k}`);
+                if (btn) btn.className = (k === lang)
+                    ? "px-3 py-1.5 rounded-md border border-blue-600 bg-blue-600 text-white"
+                    : "px-3 py-1.5 rounded-md border border-slate-200 bg-white text-slate-700 hover:bg-slate-100";
+            });
+            document.getElementById('ia-current-lang').innerText = iaLangNames[lang];
+
             const container = document.getElementById('ia-tree-container');
+            container.setAttribute('lang', lang === 'zh' ? 'zh-Hans' : lang);
             container.innerHTML = orientationData.iaTreeMulti.map(item => `
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
-                    <div class="border-b border-slate-200 pb-2">
-                        <div class="font-bold text-blue-900 text-sm flex items-center space-x-1.5">
-                            <span>🇰🇷 ${item.gnb.ko}</span>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-0.5 text-xs text-slate-600 mt-1 pl-1">
-                            <div><span class="text-slate-400">EN:</span> ${item.gnb.en}</div>
-                            <div><span class="text-slate-400">ZH:</span> ${item.gnb.zh}</div>
-                            <div><span class="text-slate-400">JA:</span> ${item.gnb.ja}</div>
-                            <div><span class="text-slate-400">TH:</span> ${item.gnb.th}</div>
-                        </div>
-                    </div>
+                    <div class="border-b border-slate-200 pb-2 font-bold text-blue-900 text-sm">${item.gnb[lang]}</div>
                     <div class="grid grid-cols-1 gap-2">
                         ${item.lnb.map(sub => `
-                            <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-xs hover:border-blue-300 transition-colors">
-                                <div class="font-semibold text-slate-800">🇰🇷 ${sub.ko}</div>
-                                <div class="text-[11px] text-slate-500 mt-1 grid grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-0.5">
-                                    <div><span class="text-slate-400">EN:</span> ${sub.en}</div>
-                                    <div><span class="text-slate-400">ZH:</span> ${sub.zh}</div>
-                                    <div><span class="text-slate-400">JA:</span> ${sub.ja}</div>
-                                    <div><span class="text-slate-400">TH:</span> ${sub.th}</div>
-                                </div>
-                            </div>
+                            <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-xs font-semibold text-slate-800 hover:border-blue-300 transition-colors">${sub[lang]}</div>
                         `).join('')}
                     </div>
                 </div>
             `).join('');
-        }
 
-        // AI Master Prompt Generator incorporating explicit D-2 Sub-codes & 5-Language IA Support
-        function generateCustomPrompt() {
-            const univ = document.getElementById('prompt-univ-name').value || '국립대학교';
-            const dept = document.getElementById('prompt-dept-name').value || '국제교류처';
-            const langs = document.getElementById('prompt-langs').value || '한국어, 영어, 중국어, 일본어, 태국어';
-            const extra = document.getElementById('prompt-extra').value || '';
+            const fh = document.getElementById('forms-heading');
+            fh.innerText = formsHeading[lang];
+            fh.setAttribute('lang', lang === 'zh' ? 'zh-Hans' : lang);
 
-            const masterPromptText = `[SYSTEM PROMPT: ${univ.toUpperCase()} INTERNATIONAL STUDENT ADMINISTRATIVE AI ASSISTANT]
-
-■ ROLE AND PERSONA
-You are the "Master Administrative AI Assistant" specialized in international student orientation and visa management for ${univ} (${dept}). You possess expert-level knowledge in the Immigration Act, Higher Education Act, National Health Insurance regulations (2026 standards), and Ministry of Education guidelines.
-
-■ STRICT VISA CODE CLASSIFICATION RULE (D-2 Granular Sub-codes)
-NEVER group visa types under a generic "D-2" label. ALWAYS specify exact sub-codes:
-1. D-2-1: Associate Degree (전문학사)
-2. D-2-2: Bachelor's Degree (학사 - 4년제)
-3. D-2-3: Master's Degree (석사)
-4. D-2-4: Ph.D. Degree (박사)
-5. D-2-6: Exchange Student (교환학생)
-6. D-4-1: General Language Trainee (어학연수)
-
-■ MULTILINGUAL PORTAL ARCHITECTURE RULE (5 Target Languages)
-When displaying Web Information Architecture (IA) or portal menus, ALWAYS provide multilingual labels for:
-- 🇰🇷 Korean (한국어)
-- 🇺🇸 English
-- 🇨🇳 Chinese (中文)
-- 🇯🇵 Japanese (日本語)
-- 🇹🇭 Thai (ไทย)
-
-■ CORE ADMINISTRATIVE KNOWLEDGE BASE (2026 REGULATORY STANDARDS)
-1. Foreigner Registration: Residence Card must be issued within 90 days of entry via local immigration offices or HiKorea.
-2. National Health Insurance (NHIS):
-   - Mandatory auto-enrollment for D-2 (D-2-1 through D-2-6) upon Residence Registration date and D-4-1 after 6 months of stay.
-   - 2026 Discounted Monthly Premium: KRW 79,320 (due by the 25th of preceding month).
-3. Part-time Work Permit (HiKorea Permission):
-   - D-2-1 / D-2-2: GPA C (2.0)+ & TOPIK Level 3+ -> Up to 25 hrs/week.
-   - D-2-3 / D-2-4: GPA C (2.0)+ & TOPIK Level 4+ -> Up to 30 hrs/week.
-   - Unlimited hours during official semester vacations for D-2 degree students.
-   - Prohibited: Manufacturing, construction, delivery riding, private tutoring.
-
-■ SPECIAL UNIVERSITY SPECIFIC INSTRUCTIONS
-- Primary Target Languages: ${langs}
-- Additional Policy Directives: ${extra}
-
-■ OPERATIONAL DIRECTIVES
-1. Respond in professional Korean public administrative tone (~바랍니다, ~함, ~을 안내해 드립니다).
-2. Format output strictly with clear markdown headers, checklist tables, and official document references.
-3. Multilingual output must adhere to verified public terminology (e.g., ALWAYS use 'Residence Card' instead of 'ARC').
-
-■ INITIALIZATION RESPONSE
-When activated, respond strictly with:
-"반갑습니다. ${univ} ${dept} 유학생 행정 전문 AI 실무비서입니다. D-2-1부터 D-2-6까지의 세부 체류자격 및 5개 국어(한국어, 영어, 중국어, 일본어, 태국어) 웹 정보구조를 기반으로 비자, 체류, 건강보험, 시간제 취업 허가 안내 작성을 보조하겠습니다."`;
-
-            document.getElementById('prompt-output-area').value = masterPromptText;
-        }
-
-        function copyGeneratedPrompt() {
-            const textarea = document.getElementById('prompt-output-area');
-            textarea.select();
-            navigator.clipboard.writeText(textarea.value).then(() => {
-                alert('생성된 마스터 프롬프트가 클립보드에 복사되었습니다.');
-            });
+            document.getElementById('forms-container').innerHTML = formsData.map(f => `
+                <label class="flex items-start space-x-2.5 bg-white p-3 rounded-lg border border-slate-200 shadow-sm cursor-pointer hover:border-blue-300">
+                    <input type="checkbox" checked class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                    <span class="font-semibold text-slate-800" lang="${lang === 'zh' ? 'zh-Hans' : lang}">${f[lang]}</span>
+                </label>
+            `).join('');
         }
     </script>
 </body>
